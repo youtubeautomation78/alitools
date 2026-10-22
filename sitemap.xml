@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NOTE: After you move to your final domain, replace "https://alisupertools.blogspot.com" with your new domain in every URL below. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://alisupertools.blogspot.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/word-counter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/sentence-case-converter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/youtube-thumbnail-downloader.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/remove-extra-spaces.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/comma-separator.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/paragraph-counter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/alphabetical-text-organizer.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/tools/text-to-slug-generator.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/privacy-policy.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://alisupertools.blogspot.com/terms.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+</urlset>
