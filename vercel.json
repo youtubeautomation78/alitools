@@ -1,4 +1,1 @@
-{
-  "buildCommand": "node build-blog.js",
-  "outputDirectory": "."
-}
+{"buildCommand":"node build-blog.js","outputDirectory":".","redirects":[{"destination":"/admin/","permanent":false,"source":"/admin"}]}
