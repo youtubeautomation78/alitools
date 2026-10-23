@@ -394,3 +394,30 @@
     });
   } catch (e) {}
 })();
+
+/* Tool cards slide in as they scroll into view (staggered) */
+(function () {
+  try {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+    var cards = document.querySelectorAll(".tool-card");
+    if (!cards.length) return;
+    cards.forEach(function (c) { c.classList.add("slide-init"); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en, i) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.style.transitionDelay = (i % 6) * 60 + "ms";
+        el.classList.add("slide-in");
+        io.unobserve(el);
+        el.addEventListener("transitionend", function h(ev) {
+          if (ev.propertyName !== "transform") return;
+          el.classList.remove("slide-init", "slide-in");
+          el.style.transitionDelay = "";
+          el.removeEventListener("transitionend", h);
+        });
+      });
+    }, { threshold: 0.12 });
+    cards.forEach(function (c) { io.observe(c); });
+  } catch (e) {}
+})();
