@@ -4,11 +4,11 @@
 <script>(function(){try{var t=localStorage.getItem("ast-theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Word Counter Generator — Count Words &amp; Characters Online Free | AliSuperTools</title>
+<title>Word Counter Generator — Count Words &amp; Characters Online Free | Ali Super Tools</title>
 <meta name="description" content="Free word counter generator — count words with and without spaces, characters, sentences and paragraphs, with reading time, keyword density and CSV export. No sign-up.">
 <link rel="canonical" href="https://alisupertools.blogspot.com/2025/12/word-counter-free-online.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Word Counter Generator — Count Words & Characters Online Free | AliSuperTools">
+<meta property="og:title" content="Word Counter Generator — Count Words & Characters Online Free | Ali Super Tools">
 <meta property="og:description" content="Free word counter generator — count words with and without spaces, characters, sentences and paragraphs, with reading time, keyword density and CSV export. No sign-up.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +24,9 @@
 
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="logo" href="../index.html" aria-label="AliSuperTools home">
+    <a class="logo" href="../index.html" aria-label="Ali Super Tools home">
       <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-      <span>Ali<em>SuperTools</em></span>
+      <span>Ali <em>Super Tools</em></span>
     </a>
     <button class="menu-btn" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <nav class="main-nav" aria-label="Main navigation">
@@ -260,7 +260,7 @@
       <div class="footer-brand">
         <a class="logo" href="../index.html">
           <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-          <span>Ali<em>SuperTools</em></span>
+          <span>Ali <em>Super Tools</em></span>
         </a>
         <p>Free online tools for writers, students, creators and marketers. Fast, private and easy to use — no sign-up, ever.</p>
         <div class="socials">
@@ -301,7 +301,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; <span id="year">2026</span> AliSuperTools. All rights reserved.</span>
+      <span>&copy; <span id="year">2026</span> Ali Super Tools. All rights reserved.</span>
       <span><a href="../privacy-policy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../contact.html">Contact</a></span>
     </div>
   </div>
@@ -408,7 +408,7 @@
       });
       kwDiv.innerHTML = th + '</tbody></table>';
       var csv = 'Keyword,Count,Density%\n' + top.map(function(r){ return r[0] + ',' + r[1] + ',' + (r[1] / words * 100).toFixed(2); }).join('\n');
-      var txt = 'KEYWORD DENSITY — AliSuperTools\n' + top.map(function(r){ return r[0] + ': ' + r[1] + ' (' + (r[1] / words * 100).toFixed(2) + '%)'; }).join('\n');
+      var txt = 'KEYWORD DENSITY — Ali Super Tools\n' + top.map(function(r){ return r[0] + ': ' + r[1] + ' (' + (r[1] / words * 100).toFixed(2) + '%)'; }).join('\n');
       $('kw-csv').setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
       $('kw-txt').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(txt));
     } else {
@@ -421,7 +421,7 @@
     $('wc-dl').setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(stats));
   }
   function statsText(){
-    return 'AliSuperTools — Word Count Stats\n' +
+    return 'Ali Super Tools — Word Count Stats\n' +
       'Words: ' + $('wc-words').textContent + '\nCharacters: ' + $('wc-chars').textContent +
       '\nCharacters (no spaces): ' + $('wc-nospace').textContent + '\nSentences: ' + $('wc-sent').textContent +
       '\nParagraphs: ' + $('wc-para').textContent + '\nReading time: ' + $('wc-read').textContent +
