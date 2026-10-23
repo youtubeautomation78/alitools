@@ -415,3 +415,18 @@ a.btn-sm{text-decoration:none}
 [data-theme="dark"] .feature,[data-theme="dark"] .step,[data-theme="dark"] .info-card,[data-theme="dark"] .thumb-card{border-color:#F97316}
 .faq-item{border-color:#FDBA74}
 [data-theme="dark"] .faq-item{border-color:rgba(249,115,22,.45)}
+
+/* ---------- MAINTENANCE MODE cover (remove this whole block + the MAINTENANCE block in main.js when the user says remove) ---------- */
+.maint-overlay{position:fixed;inset:0;z-index:99999;background:radial-gradient(1100px 550px at 85% -10%,rgba(236,72,153,.35),transparent 60%),radial-gradient(900px 500px at 8% 110%,rgba(249,115,22,.32),transparent 60%),linear-gradient(160deg,#0B1220,#111C33 55%,#0B1220);display:grid;place-items:center;text-align:center;padding:24px;color:#E2E8F0}
+.maint-box{max-width:640px}
+.maint-logo{width:64px;height:64px;margin:0 auto 22px;border-radius:18px;background:var(--grad);display:grid;place-items:center;color:#fff;box-shadow:0 14px 34px rgba(37,99,235,.5)}
+.maint-logo svg{width:34px;height:34px}
+.maint-badge{display:inline-block;font-family:var(--font-h);font-weight:700;font-size:.75rem;letter-spacing:.28em;color:#FDBA74;border:1px solid rgba(251,146,60,.5);border-radius:999px;padding:7px 16px 7px 19px;margin-bottom:22px;background:rgba(249,115,22,.08)}
+.maint-title{font-family:var(--font-h);font-weight:800;font-size:clamp(2rem,7vw,3.4rem);line-height:1.12;color:#fff;letter-spacing:.02em;margin-bottom:16px}
+.maint-title span{background:linear-gradient(90deg,#FB923C,#F472B6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.maint-sub{font-size:1.02rem;color:#94A3B8;max-width:460px;margin:0 auto 30px}
+.maint-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;max-width:380px;margin:0 auto 18px}
+.maint-bar i{display:block;height:100%;width:40%;border-radius:99px;background:linear-gradient(90deg,#F97316,#EC4899);animation:maint-slide 1.4s ease-in-out infinite}
+@keyframes maint-slide{0%{transform:translateX(-110%)}100%{transform:translateX(280%)}}
+.maint-dots{font-size:.9rem;color:#64748B;letter-spacing:.2em}
+@media (prefers-reduced-motion: reduce){.maint-bar i{animation:none}}

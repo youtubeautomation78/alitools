@@ -421,3 +421,25 @@
     cards.forEach(function (c) { io.observe(c); });
   } catch (e) {}
 })();
+
+/* MAINTENANCE MODE (added 2026-10-23 on the user's instruction): covers the whole site with
+   "WEBSITE BUILDING NOW". Remove this whole block + the MAINTENANCE block in style.css when the user says remove. */
+(function () {
+  try {
+    if (!document.body) return;
+    var overlay = document.createElement("div");
+    overlay.className = "maint-overlay";
+    overlay.innerHTML =
+      '<div class="maint-box">' +
+        '<div class="maint-logo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>' +
+        '<div class="maint-badge">&#128679; UNDER CONSTRUCTION</div>' +
+        '<div class="maint-title">WEBSITE <span>BUILDING</span> NOW</div>' +
+        '<p class="maint-sub">Ali Super Tools is getting an upgrade. We are building something better for you - please check back soon!</p>' +
+        '<div class="maint-bar"><i></i></div>' +
+        '<div class="maint-dots">FREE ONLINE TOOLS</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+  } catch (e) {}
+})();
