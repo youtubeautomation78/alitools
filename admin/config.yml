@@ -1,0 +1,35 @@
+# Ali Super Tools - Decap CMS configuration
+# The client logs in at https://www.hausamusics.com/admin with a GitHub account
+# that has write access to the repo. Publishing a post commits a Markdown file
+# to content/posts/ and the Vercel build (build-blog.js) turns it into pages at deploy time.
+backend:
+  name: github
+  repo: youtubeautomation78/alitools
+  branch: main
+  base_url: https://www.hausamusics.com
+  auth_endpoint: api/auth
+
+site_url: https://www.hausamusics.com
+display_url: https://www.hausamusics.com
+logo_url: https://www.hausamusics.com/assets/icon-512.png
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+publish_mode: simple
+
+collections:
+  - name: posts
+    label: "Blog Posts"
+    folder: "content/posts"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}} ({{date}})"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Tools Guide", "Text Tips", "YouTube Tips", "Website News", "General"], default: "General" }
+      - { label: "Short Description (shown on blog list + Google)", name: "description", widget: "text" }
+      - { label: "Cover Image (optional)", name: "image", widget: "image", required: false }
+      - { label: "Draft - hide this post for now", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Article Text", name: "body", widget: "markdown" }

@@ -67,3 +67,11 @@ for AdSense and branding).
 - Design: Poppins + Inter fonts, indigo/violet brand gradient, fully responsive.
 - Every page has a unique title + meta description; tool pages include FAQ schema
   and a Related Tools section for internal linking.
+
+## Blog + Admin Panel (added 2026-10-23)
+
+- **Admin:** https://www.hausamusics.com/admin (Decap CMS). Login = a GitHub account with write access to this repo.
+- **How publishing works:** Decap saves each post as Markdown in `content/posts/`. Vercel runs `build-blog.js` as the build command (see `vercel.json`) on every deploy, which generates `blog/<slug>.html`, refreshes `blog.html`, `rss.xml` and the blog entries in `sitemap.xml`, in the deployment. A post goes live ~1-2 minutes after Publish.
+- **By hand:** you can also add a `.md` file to `content/posts/` yourself (same frontmatter as the existing post) and push - the next deploy builds it the same way.
+- **One-time owner setup (required for login to work):** create a GitHub OAuth App (callback URL `https://www.hausamusics.com/api/callback`), then add `OAUTH_GITHUB_CLIENT_ID` and `OAUTH_GITHUB_CLIENT_SECRET` as Vercel environment variables, and invite the client's GitHub account as a repo collaborator. Full steps: `alisupertools-admin-setup-guide.md` in the delivery folder.
+- Uploaded post images are stored in `assets/uploads/`.
