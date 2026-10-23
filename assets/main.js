@@ -336,3 +336,61 @@
   var co = tb.querySelector("[data-tb-clear-output]");
   if (co) co.addEventListener("click", function () { output.value = ""; });
 })();
+
+/* 3D card tilt + animated cursor — desktop pointers only, respects reduced motion */
+(function () {
+  try {
+    if (!window.matchMedia) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var rafFn = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
+
+    /* 3D tilt on tool cards */
+    document.querySelectorAll(".tool-card").forEach(function (card) {
+      var queued = false, lastE = null;
+      card.addEventListener("mousemove", function (e) {
+        lastE = e;
+        if (queued) return;
+        queued = true;
+        rafFn(function () {
+          queued = false;
+          if (!lastE) return;
+          var r = card.getBoundingClientRect();
+          var px = (lastE.clientX - r.left) / r.width - 0.5;
+          var py = (lastE.clientY - r.top) / r.height - 0.5;
+          card.style.transform = "perspective(820px) rotateX(" + (-py * 10).toFixed(2) + "deg) rotateY(" + (px * 12).toFixed(2) + "deg) translateY(-6px)";
+          card.style.setProperty("--mx", (px * 100 + 50) + "%");
+          card.style.setProperty("--my", (py * 100 + 50) + "%");
+        });
+      });
+      card.addEventListener("mouseleave", function () { card.style.transform = ""; lastE = null; });
+    });
+
+    /* Animated cursor: instant dot + trailing ring */
+    var dot = document.createElement("div"); dot.className = "cursor-dot";
+    var ring = document.createElement("div"); ring.className = "cursor-ring";
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    var mx = -100, my = -100, rx = -100, ry = -100, shown = false;
+    document.addEventListener("mousemove", function (e) {
+      mx = e.clientX; my = e.clientY;
+      if (!shown) { shown = true; rx = mx; ry = my; dot.style.opacity = "1"; ring.style.opacity = "1"; }
+      dot.style.transform = "translate(" + mx + "px," + my + "px)";
+    });
+    (function loop() {
+      rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+      ring.style.transform = "translate(" + rx + "px," + ry + "px)";
+      rafFn(loop);
+    })();
+    document.addEventListener("mouseover", function (e) {
+      if (!e.target.closest) return;
+      var typing = e.target.closest("input, textarea, select");
+      var hot = e.target.closest("a, button, label, .faq-q");
+      ring.classList.toggle("cursor-on", !!hot && !typing);
+      ring.classList.toggle("cursor-hide", !!typing);
+      dot.classList.toggle("cursor-hide", !!typing);
+    });
+    document.addEventListener("mouseleave", function () {
+      shown = false; dot.style.opacity = "0"; ring.style.opacity = "0";
+    });
+  } catch (e) {}
+})();

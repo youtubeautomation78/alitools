@@ -337,3 +337,29 @@ a.btn-sm{text-decoration:none}
 
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 18px;z-index:300;border-radius:0 0 10px 0;font-weight:600}
 .skip-link:focus{left:0;text-decoration:none}
+
+/* ---------- Effects: hero smog, 3D cards, animated cursor ---------- */
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.hero::before{width:560px;height:560px;top:-190px;right:-120px;background:radial-gradient(circle,rgba(37,99,235,.40) 0%,transparent 65%);animation:smog-a 16s ease-in-out infinite alternate}
+.hero::after{width:660px;height:660px;bottom:-280px;left:-170px;background:radial-gradient(circle,rgba(14,165,233,.32) 0%,transparent 65%);animation:smog-b 21s ease-in-out infinite alternate}
+.hero .container{position:relative;z-index:1}
+.page-hero{position:relative;overflow:hidden}
+.page-hero::before{content:"";position:absolute;width:520px;height:520px;top:-260px;right:-110px;border-radius:50%;filter:blur(70px);pointer-events:none;background:radial-gradient(circle,rgba(37,99,235,.30) 0%,transparent 65%);animation:smog-a 18s ease-in-out infinite alternate}
+.page-hero .container{position:relative;z-index:1}
+@keyframes smog-a{from{transform:translate(0,0) scale(1)}to{transform:translate(-70px,52px) scale(1.16)}}
+@keyframes smog-b{from{transform:translate(0,0) scale(1.12)}to{transform:translate(84px,-44px) scale(.94)}}
+[data-theme="dark"] .hero::before{background:radial-gradient(circle,rgba(37,99,235,.5) 0%,transparent 65%)}
+[data-theme="dark"] .hero::after{background:radial-gradient(circle,rgba(14,165,233,.38) 0%,transparent 65%)}
+.tool-card{transform-style:preserve-3d;box-shadow:0 1px 2px rgba(15,23,42,.05),0 14px 34px -14px rgba(15,23,42,.22)}
+.tool-card .tool-icon{transform:translateZ(30px)}
+.tool-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.22),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
+.tool-card:hover::after{opacity:1}
+[data-theme="dark"] .tool-card{box-shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.6)}
+.cursor-dot{position:fixed;top:-3px;left:-3px;width:6px;height:6px;border-radius:50%;background:var(--primary);z-index:9999;pointer-events:none;opacity:0}
+.cursor-ring{position:fixed;top:-18px;left:-18px;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(37,99,235,.55);z-index:9998;pointer-events:none;opacity:0;transition:width .25s,height .25s,top .25s,left .25s,border-color .25s,background .25s,opacity .3s}
+.cursor-ring.cursor-on{width:58px;height:58px;top:-29px;left:-29px;border-color:rgba(37,99,235,.9);background:rgba(37,99,235,.07)}
+.cursor-hide{opacity:0!important}
+@media (prefers-reduced-motion: reduce){
+  .hero::before,.hero::after,.page-hero::before{animation:none}
+  .tool-card .tool-icon{transform:none}
+}
