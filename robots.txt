@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alisupertools.blogspot.com/sitemap.xml
+Sitemap: https://alitools-nine.vercel.app/sitemap.xml
