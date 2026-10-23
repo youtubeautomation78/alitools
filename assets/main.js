@@ -183,3 +183,26 @@
     }
   }
 })();
+
+/* ---------- Dark mode toggle ---------- */
+(function () {
+  "use strict";
+  var rootEl = document.documentElement;
+  var tbtn = document.getElementById("theme-toggle");
+  if (!tbtn) return;
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+  function paint() {
+    var dark = rootEl.getAttribute("data-theme") === "dark";
+    tbtn.textContent = dark ? "☀️" : "\uD83C\uDF19";
+    tbtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    tbtn.title = dark ? "Light mode" : "Dark mode";
+  }
+  tbtn.addEventListener("click", function () {
+    var dark = rootEl.getAttribute("data-theme") === "dark";
+    if (dark) { rootEl.removeAttribute("data-theme"); lsSet("ast-theme", "light"); }
+    else { rootEl.setAttribute("data-theme", "dark"); lsSet("ast-theme", "dark"); }
+    paint();
+  });
+  paint();
+})();
