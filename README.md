@@ -30,7 +30,7 @@ ads.txt                    → Your AdSense publisher file (pub-4856164099586969
 
 ## Before you publish — 3 things to change
 
-1. **Contact email:** In `contact.html`, replace `contact@alisupertools.com`
+1. **Contact email:** set to `shaheertariq31@gmail.com` in `contact.html` (info card + form handler).
    (2 places: the visible text/link and the `var to = ...` line in the script)
    with your real email address.
 2. **Domain in sitemap/canonicals:** If you publish on a new domain, replace
