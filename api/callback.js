@@ -1,5 +1,6 @@
 // Decap CMS GitHub OAuth - step 2: exchange the code for a token and hand it
 // back to the Decap admin window using its postMessage protocol.
+const crypto = require('crypto');
 module.exports = async (req, res) => {
   const clientId = process.env.OAUTH_GITHUB_CLIENT_ID;
   const clientSecret = process.env.OAUTH_GITHUB_CLIENT_SECRET;
@@ -11,7 +12,18 @@ module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   if (!clientId || !clientSecret) { res.status(500).send('Admin login is not configured yet (missing Vercel environment variables).'); return; }
   if (!code) { res.status(400).send('Missing code from GitHub. Please try logging in again.'); return; }
-  if (!state || state !== savedState) { res.status(400).send('Security check failed (state mismatch). Please try logging in again.'); return; }
+  // Accept the state if it carries a valid signature (issued by /api/auth and
+  // signed with the client secret) OR if it matches the state cookie. The
+  // signature path keeps login working when the cookie is blocked, expired
+  // or overwritten by a second login click.
+  let stateOk = false;
+  if (state && state === savedState) stateOk = true;
+  if (!stateOk && state && state.includes('.')) {
+    const parts = state.split('.');
+    const expected = crypto.createHmac('sha256', clientSecret).update(parts[0]).digest('hex').slice(0, 32);
+    if (parts.length === 2 && parts[1] === expected) stateOk = true;
+  }
+  if (!state || !stateOk) { res.status(400).send('Security check failed (state mismatch). Please try logging in again.'); return; }
   try {
     const r = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
