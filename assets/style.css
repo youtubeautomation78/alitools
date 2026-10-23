@@ -375,10 +375,10 @@ a.btn-sm{text-decoration:none}
 .tool-card .tool-icon{animation:icon-shift 12s ease-in-out infinite}
 @keyframes card-drift{0%,100%{translate:0 0}50%{translate:0 -7px}}
 @keyframes card-glow{
-  0%,100%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(37,99,235,.50)}
-  25%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(236,72,153,.50)}
-  50%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(249,115,22,.50)}
-  75%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(16,185,129,.45)}
+  0%,100%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(37,99,235,.50),0 0 44px -8px rgba(245,158,11,.38)}
+  25%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(236,72,153,.50),0 0 44px -8px rgba(245,158,11,.38)}
+  50%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(249,115,22,.50),0 0 44px -8px rgba(245,158,11,.38)}
+  75%{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(16,185,129,.45),0 0 44px -8px rgba(245,158,11,.38)}
 }
 @keyframes glass-sweep{0%{background-position:130% 0}45%,100%{background-position:-130% 0}}
 @keyframes icon-shift{0%,100%{filter:hue-rotate(0deg)}33%{filter:hue-rotate(38deg)}66%{filter:hue-rotate(-28deg)}}
@@ -405,3 +405,13 @@ a.btn-sm{text-decoration:none}
 .ticker:hover .ticker-track{animation-play-state:paused}
 @keyframes tick-scroll{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}}
+
+/* ---------- Sun-orange card borders ---------- */
+.tool-card{border:1.5px solid #FB923C}
+.tool-card:hover{border-color:#F97316}
+[data-theme="dark"] .tool-card{border-color:#F97316}
+[data-theme="dark"] .tool-card:hover{border-color:#FB923C}
+.feature,.step,.info-card,.thumb-card{border:1.5px solid #FB923C}
+[data-theme="dark"] .feature,[data-theme="dark"] .step,[data-theme="dark"] .info-card,[data-theme="dark"] .thumb-card{border-color:#F97316}
+.faq-item{border-color:#FDBA74}
+[data-theme="dark"] .faq-item{border-color:rgba(249,115,22,.45)}
