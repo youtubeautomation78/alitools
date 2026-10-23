@@ -310,3 +310,27 @@ a.btn-sm{text-decoration:none}
   [data-theme="dark"] .main-nav{background:var(--bg)}
   .theme-toggle{align-self:center;margin-top:8px}
 }
+
+/* ---------- Quick toolbox (ConvertTextTools-style; top of every text tool page) ---------- */
+.toolbox{background:#0B1120;border:1px solid #1E293B;border-radius:20px;padding:26px;box-shadow:var(--shadow-lg);color:#E2E8F0;margin-bottom:26px}
+.tb-tabs{display:flex;gap:10px;margin-bottom:18px}
+.tb-tab{flex:1;border:0;border-radius:10px;padding:13px 18px;font-family:var(--font-h);font-weight:600;font-size:1rem;cursor:pointer;background:#1E293B;color:#CBD5E1;transition:.2s}
+.tb-tab:hover{color:#fff}
+.tb-tab.active{background:#0284C7;color:#fff}
+.toolbox textarea{width:100%;background:#151E32;border:1.5px solid #263449;border-radius:12px;color:#F1F5F9;padding:15px 16px;font-family:var(--font-b);font-size:1rem;line-height:1.6;min-height:150px;resize:vertical}
+.toolbox textarea::placeholder{color:#64748B}
+.toolbox textarea:focus{outline:0;border-color:#0284C7;box-shadow:0 0 0 4px rgba(2,132,199,.25)}
+.tb-grid{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.tb-btn{background:#0284C7;color:#fff;border:0;border-radius:8px;padding:10px 15px;font-weight:600;font-size:.9rem;cursor:pointer;transition:.15s;font-family:var(--font-b)}
+.tb-btn:hover{background:#0369A1;transform:translateY(-1px)}
+.tb-btn.active{box-shadow:0 0 0 2px #0B1120,0 0 0 4.5px #F59E0B}
+.tb-btn-ghost{background:#1E293B}
+.tb-btn-ghost:hover{background:#334155}
+.tb-out-label{font-family:var(--font-h);font-weight:700;font-size:1.3rem;text-align:center;margin:22px 0 12px;color:#F1F5F9}
+.tb-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.tb-fr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:560px){.tb-fr-grid{grid-template-columns:1fr}}
+.tb-fr-grid input{background:#151E32;border:1.5px solid #263449;border-radius:10px;color:#F1F5F9;padding:12px 14px;font-family:var(--font-b);font-size:.98rem;width:100%}
+.tb-fr-grid input::placeholder{color:#64748B}
+.tb-fr-grid input:focus{outline:0;border-color:#0284C7;box-shadow:0 0 0 4px rgba(2,132,199,.25)}
+.tb-check{display:inline-flex;gap:8px;align-items:center;margin-top:14px;font-size:.93rem;color:#CBD5E1;cursor:pointer}

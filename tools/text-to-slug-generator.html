@@ -49,6 +49,56 @@
 
 <section class="section" style="padding-top:44px">
   <div class="container tool-shell">
+    <div class="toolbox" data-toolbox data-active="slug">
+      <div class="tb-tabs">
+        <button type="button" class="tb-tab active" data-tb-tab="tools">🛠 Text Tools</button>
+        <button type="button" class="tb-tab" data-tb-tab="fr">🔍 Find &amp; Replace</button>
+      </div>
+      <textarea id="tb-input" placeholder="Enter your text..." aria-label="Enter your text"></textarea>
+      <div data-tb-pane="tools">
+        <div class="tb-grid">
+          <button type="button" class="tb-btn" data-tb-action="upper">UPPER CASE</button>
+          <button type="button" class="tb-btn" data-tb-action="lower">lower case</button>
+          <button type="button" class="tb-btn" data-tb-action="title">Title Case</button>
+          <button type="button" class="tb-btn" data-tb-action="sentence">Sentence Case</button>
+          <button type="button" class="tb-btn" data-tb-action="alt">aLtErNaTiNg</button>
+          <button type="button" class="tb-btn" data-tb-action="remove-spaces">Remove Extra Spaces</button>
+          <button type="button" class="tb-btn" data-tb-action="reverse">Reverse Text</button>
+          <button type="button" class="tb-btn" data-tb-action="word-count">Word Count</button>
+          <button type="button" class="tb-btn" data-tb-action="char-count">Character Count</button>
+          <button type="button" class="tb-btn" data-tb-action="sentence-count">Sentence Count</button>
+          <button type="button" class="tb-btn" data-tb-action="paragraph-count">Paragraph Count</button>
+          <button type="button" class="tb-btn" data-tb-action="remove-breaks">Remove Line Breaks</button>
+          <button type="button" class="tb-btn" data-tb-action="add-breaks">Add Line Breaks</button>
+          <button type="button" class="tb-btn" data-tb-action="remove-punct">Remove Punctuation</button>
+          <button type="button" class="tb-btn" data-tb-action="sort-az">Sort A–Z</button>
+          <button type="button" class="tb-btn" data-tb-action="sort-za">Sort Z–A</button>
+          <button type="button" class="tb-btn" data-tb-action="commas">Lines → Commas</button>
+          <button type="button" class="tb-btn" data-tb-action="slug">URL Slug</button>
+          <button type="button" class="tb-btn" data-tb-action="to-binary">Text → Binary</button>
+          <button type="button" class="tb-btn" data-tb-action="from-binary">Binary → Text</button>
+        </div>
+      </div>
+      <div data-tb-pane="fr" hidden>
+        <div class="tb-fr-grid">
+          <input type="text" id="tb-find" placeholder="Find..." aria-label="Find text">
+          <input type="text" id="tb-replace" placeholder="Replace with..." aria-label="Replace with">
+        </div>
+        <label class="tb-check"><input type="checkbox" id="tb-case"> Case sensitive</label>
+        <div class="tb-actions">
+          <button type="button" class="tb-btn" data-tb-fr="replace">Replace All</button>
+          <button type="button" class="tb-btn" data-tb-fr="count">Count Matches</button>
+        </div>
+      </div>
+      <div class="tb-out-label">Output:</div>
+      <textarea id="tb-output" placeholder="Your result will appear here..." aria-label="Output"></textarea>
+      <div class="tb-actions">
+        <button type="button" class="tb-btn" data-tb-copy>📋 Copy Output</button>
+        <button type="button" class="tb-btn tb-btn-ghost" data-tb-clear-input>Clear Input</button>
+        <button type="button" class="tb-btn tb-btn-ghost" data-tb-clear-output>Clear Output</button>
+      </div>
+    </div>
+
     <div class="tool-box">
       <label for="sl-input">Your title or text</label>
       <input type="text" id="sl-input" placeholder="e.g. 10 Best Tips for Better SEO in 2026!">

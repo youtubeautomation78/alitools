@@ -206,3 +206,130 @@
   });
   paint();
 })();
+
+/* ---------- Quick toolbox (ConvertTextTools-style) ---------- */
+(function () {
+  "use strict";
+  function tbTitle(text) {
+    var small = ["a", "an", "the", "and", "but", "or", "for", "nor", "on", "at", "to", "from", "by", "in", "of", "up", "as"];
+    return text.toLowerCase().split(/(\s+)/).map(function (w, i, arr) {
+      if (!/\w/.test(w)) return w;
+      var isEdge = i === 0 || i === arr.length - 1;
+      if (!isEdge && small.indexOf(w) > -1) return w;
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    }).join("");
+  }
+  function tbSentence(text) {
+    return text.toLowerCase().replace(/(^\s*[a-z])|([.!?]\s*[a-z])/g, function (m) { return m.toUpperCase(); });
+  }
+  function tbLines(text) {
+    return text.split(/\r?\n/).map(function (l) { return l.trim(); }).filter(function (l) { return l !== ""; });
+  }
+  function tbTransform(action, text) {
+    var m, parts, i;
+    switch (action) {
+      case "upper": return text.toUpperCase();
+      case "lower": return text.toLowerCase();
+      case "title": return tbTitle(text);
+      case "sentence": return tbSentence(text);
+      case "alt":
+        var up = false;
+        return text.split("").map(function (c) {
+          if (/[a-z]/i.test(c)) { var r = up ? c.toUpperCase() : c.toLowerCase(); up = !up; return r; }
+          return c;
+        }).join("");
+      case "remove-spaces":
+        return text.replace(/\t/g, " ").split(/\r?\n/).map(function (l) { return l.replace(/ {2,}/g, " ").trim(); }).join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      case "reverse": return Array.from(text).reverse().join("");
+      case "word-count": return "Words: " + (text.trim() === "" ? 0 : text.trim().split(/\s+/).length);
+      case "char-count": return "Characters: " + text.length + " (" + text.replace(/\s/g, "").length + " without spaces)";
+      case "sentence-count":
+        m = text.match(/[^.!?]+[.!?]+/g);
+        return "Sentences: " + (text.trim() === "" ? 0 : (m ? m.length : 1));
+      case "paragraph-count":
+        return "Paragraphs: " + (text.trim() === "" ? 0 : text.split(/\n\s*\n/).filter(function (p) { return p.trim() !== ""; }).length);
+      case "remove-breaks": return text.replace(/\s*\n\s*/g, " ").replace(/ {2,}/g, " ").trim();
+      case "add-breaks": return text.replace(/([.!?])\s+/g, "$1\n");
+      case "remove-punct": return text.replace(/[!"#$%&'()*+,\-.\/:;<=>?@\[\\\]^_`{|}~’‘“”«»]/g, "").replace(/ {2,}/g, " ");
+      case "sort-az": return tbLines(text).sort(function (a, b) { return a.localeCompare(b, undefined, { sensitivity: "base" }); }).join("\n");
+      case "sort-za": return tbLines(text).sort(function (a, b) { return b.localeCompare(a, undefined, { sensitivity: "base" }); }).join("\n");
+      case "commas": return tbLines(text).join(", ");
+      case "slug":
+        return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      case "to-binary":
+        return text.split("").map(function (c) { return c.charCodeAt(0).toString(2).padStart(8, "0"); }).join(" ");
+      case "from-binary":
+        parts = text.trim().split(/\s+/).filter(Boolean);
+        for (i = 0; i < parts.length; i++) { if (!/^[01]{1,8}$/.test(parts[i])) return null; }
+        return parts.map(function (b) { return String.fromCharCode(parseInt(b, 2)); }).join("");
+    }
+    return text;
+  }
+  function tbFrCount(text, find, cs) {
+    if (!find) return 0;
+    var hay = cs ? text : text.toLowerCase(), needle = cs ? find : find.toLowerCase();
+    return hay.split(needle).length - 1;
+  }
+  function tbFrReplace(text, find, repl, cs) {
+    if (cs) return text.split(find).join(repl);
+    var out = "", i = 0, lt = text.toLowerCase(), lf = find.toLowerCase();
+    while (true) {
+      var idx = lt.indexOf(lf, i);
+      if (idx === -1) { out += text.slice(i); break; }
+      out += text.slice(i, idx) + repl; i = idx + find.length;
+    }
+    return out;
+  }
+  window.tbTransform = tbTransform;
+  window.tbFindReplace = { count: tbFrCount, replace: tbFrReplace };
+
+  var tb = document.querySelector("[data-toolbox]");
+  if (!tb) return;
+  var input = tb.querySelector("#tb-input"), output = tb.querySelector("#tb-output");
+  var activeAction = tb.getAttribute("data-active");
+  tb.querySelectorAll("[data-tb-action]").forEach(function (btn) {
+    var action = btn.getAttribute("data-tb-action");
+    if (action === activeAction) btn.classList.add("active");
+    btn.addEventListener("click", function () {
+      if (input.value.trim() === "") { showToast("Please enter some text first"); input.focus(); return; }
+      var res = tbTransform(action, input.value);
+      if (res === null) { showToast("Invalid binary — use groups of 0s and 1s"); return; }
+      output.value = res;
+      showToast("Done");
+    });
+  });
+  var tabs = tb.querySelectorAll("[data-tb-tab]");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.classList.toggle("active", t === tab); });
+      var which = tab.getAttribute("data-tb-tab");
+      tb.querySelectorAll("[data-tb-pane]").forEach(function (p) {
+        p.hidden = p.getAttribute("data-tb-pane") !== which;
+      });
+    });
+  });
+  tb.querySelectorAll("[data-tb-fr]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var find = tb.querySelector("#tb-find").value;
+      var repl = tb.querySelector("#tb-replace").value;
+      var cs = tb.querySelector("#tb-case").checked;
+      if (input.value.trim() === "") { showToast("Please enter some text first"); return; }
+      if (!find) { showToast("Type something to find first"); return; }
+      var n = tbFrCount(input.value, find, cs);
+      if (btn.getAttribute("data-tb-fr") === "count") {
+        output.value = "Matches found: " + n + " \u00D7 \"" + find + "\"";
+        showToast(n + " match" + (n === 1 ? "" : "es") + " found");
+      } else {
+        if (n === 0) { showToast("Nothing found to replace"); return; }
+        output.value = tbFrReplace(input.value, find, repl, cs);
+        showToast("Replaced " + n + " match" + (n === 1 ? "" : "es"));
+      }
+    });
+  });
+  var copyBtn = tb.querySelector("[data-tb-copy]");
+  if (copyBtn) copyBtn.addEventListener("click", function () { copyText(output.value, "Output copied"); });
+  var ci = tb.querySelector("[data-tb-clear-input]");
+  if (ci) ci.addEventListener("click", function () { input.value = ""; input.focus(); });
+  var co = tb.querySelector("[data-tb-clear-output]");
+  if (co) co.addEventListener("click", function () { output.value = ""; });
+})();
