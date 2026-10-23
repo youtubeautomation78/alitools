@@ -30,7 +30,7 @@ ads.txt                    → Your AdSense publisher file (pub-4856164099586969
 
 ## Before you publish — 3 things to change
 
-1. **Contact email:** set to `shaheertariq31@gmail.com` in `contact.html` (info card + form handler).
+1. **Contact email + form:** contact email is `shaheertariq31@gmail.com`; the contact form submits via FormSubmit (AJAX) straight to that inbox - no email app needed. One-time setup: the first submission triggers a FormSubmit activation email to that address; click its activation link once.
    (2 places: the visible text/link and the `var to = ...` line in the script)
    with your real email address.
 2. **Domain in sitemap/canonicals:** If you publish on a new domain, replace

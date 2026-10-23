@@ -113,7 +113,7 @@
             <textarea id="cf-msg" required placeholder="Write your message here…" style="min-height:150px"></textarea>
           </div>
           <button class="btn btn-primary" type="submit" style="justify-content:center">Send Message &#8594;</button>
-          <p style="font-size:.85rem;color:var(--muted);text-align:center">This form opens your email app with the message ready to send. Your details are only used to reply to you — see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+          <p style="font-size:.85rem;color:var(--muted);text-align:center">Your message is delivered straight to our inbox - no email app needed. Your details are only used to reply to you — see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
         </form>
       </div>
     </div>
@@ -193,15 +193,43 @@
 <script>
 document.getElementById('contact-form').addEventListener('submit', function (e) {
   e.preventDefault();
-  /* TODO: replace with your real contact email address */
-  var to = 'shaheertariq31@gmail.com';
+  var form = this;
+  var btn = form.querySelector('button[type="submit"]');
   var name = document.getElementById('cf-name').value.trim();
   var email = document.getElementById('cf-email').value.trim();
   var subject = document.getElementById('cf-subject').value;
   var msg = document.getElementById('cf-msg').value.trim();
-  var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + msg;
-  window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent('[Ali Super Tools] ' + subject) + '&body=' + encodeURIComponent(body);
-  showToast('Opening your email app…');
+  if (!name || !email || !msg) { showToast('Please fill in your name, email and message.'); return; }
+  var oldBtn = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  fetch('https://formsubmit.co/ajax/shaheertariq31@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      subject: subject,
+      message: msg,
+      _subject: '[Ali Super Tools] ' + subject,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: ''
+    })
+  }).then(function (r) { return r.json(); }).then(function (data) {
+    btn.disabled = false;
+    btn.innerHTML = oldBtn;
+    if (data && (data.success === 'true' || data.success === true)) {
+      form.reset();
+      showToast('Message sent! We usually reply within 24-48 hours.');
+    } else {
+      showToast('Could not send right now - please email shaheertariq31@gmail.com directly.');
+    }
+  }).catch(function () {
+    btn.disabled = false;
+    btn.innerHTML = oldBtn;
+    showToast('Could not send right now - please email shaheertariq31@gmail.com directly.');
+  });
 });
 </script>
 </body>
