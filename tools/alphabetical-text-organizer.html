@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alphabetical Text Organizer — Sort Lines A–Z Online | AliSuperTools</title>
-<meta name="description" content="Free alphabetical text organizer. Sort lines of text from A to Z or Z to A, reverse, shuffle and remove duplicate lines online instantly.">
+<meta name="description" content="Free alphabetical text organizer. Sort lines A–Z or Z–A, by length, reverse, shuffle and remove duplicates with pre-sort cleanup options. Online, no sign-up.">
 <link rel="canonical" href="https://alisupertools.blogspot.com/2025/12/alphabetical-text-organizer.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Alphabetical Text Organizer — Sort Lines A–Z Online | AliSuperTools">
@@ -53,13 +53,22 @@
       <div class="tool-options">
         <label><input type="checkbox" id="at-ignore" checked> Ignore letter case when sorting</label>
         <label><input type="checkbox" id="at-trim" checked> Trim spaces on each line</label>
+        <label><input type="checkbox" id="at-noempty" checked> Remove empty lines</label>
+        <label><input type="checkbox" id="at-dedupclean"> Remove duplicate lines (pre-sort cleanup)</label>
       </div>
       <div class="tool-actions">
         <button class="btn btn-primary btn-sm" type="button" id="at-az">Sort A &#8594; Z</button>
         <button class="btn btn-ghost btn-sm" type="button" id="at-za">Sort Z &#8594; A</button>
+        <button class="btn btn-ghost btn-sm" type="button" id="at-len-asc">Short &#8594; Long</button>
+        <button class="btn btn-ghost btn-sm" type="button" id="at-len-desc">Long &#8594; Short</button>
         <button class="btn btn-ghost btn-sm" type="button" id="at-rev">Reverse</button>
         <button class="btn btn-ghost btn-sm" type="button" id="at-shuf">Shuffle</button>
         <button class="btn btn-ghost btn-sm" type="button" id="at-dedupe">Remove Duplicates</button>
+      </div>
+      <div class="usage-stats" aria-live="polite">
+        <span>Lines processed: <b id="at-stat-lines">0</b></span>
+        <span>Duplicates removed: <b id="at-stat-dup">0</b></span>
+        <span>Sorts run: <b id="at-stat-sorts">0</b></span>
       </div>
       <label for="at-output" style="margin-top:22px">Organized list</label>
       <textarea id="at-output" readonly placeholder="Your organized list will appear here…"></textarea>
@@ -67,6 +76,27 @@
         <button class="btn btn-copy btn-sm" type="button" id="at-copy">Copy Result</button>
         <button class="btn btn-ghost btn-sm" type="button" id="at-clear">Clear</button>
         <span id="at-info" style="align-self:center;font-size:.9rem;color:var(--muted)"></span>
+      </div>
+    </div>
+
+    <div class="share-rate">
+      <div class="share-row">
+        <span class="sr-title">Share this tool</span>
+        <button class="btn btn-ghost btn-sm" type="button" data-share>Copy Link</button>
+        <a class="btn btn-ghost btn-sm" data-share-x href="#" target="_blank" rel="noopener">X</a>
+        <a class="btn btn-ghost btn-sm" data-share-fb href="#" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn btn-ghost btn-sm" data-share-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="rate-row">
+        <span class="sr-title">Rate this tool</span>
+        <span class="stars" data-rating>
+          <button type="button" data-star="1" aria-label="Rate 1 star">&#9733;</button>
+          <button type="button" data-star="2" aria-label="Rate 2 stars">&#9733;</button>
+          <button type="button" data-star="3" aria-label="Rate 3 stars">&#9733;</button>
+          <button type="button" data-star="4" aria-label="Rate 4 stars">&#9733;</button>
+          <button type="button" data-star="5" aria-label="Rate 5 stars">&#9733;</button>
+        </span>
+        <span class="rate-msg" data-rate-msg></span>
       </div>
     </div>
 
@@ -190,35 +220,61 @@
 <script src="../assets/main.js"></script>
 <script>
 var atIn = document.getElementById('at-input'), atOut = document.getElementById('at-output');
+var atStats = { sorts: 0 };
 function atLines(){
-  var lines = atIn.value.split('\n');
+  var raw = atIn.value.split('\n');
+  var lines = raw.slice();
   if (document.getElementById('at-trim').checked) lines = lines.map(function(l){ return l.trim(); });
-  return lines.filter(function(l){ return l.length > 0; });
+  var before = lines.length;
+  if (document.getElementById('at-noempty').checked) lines = lines.filter(function(l){ return l.length > 0; });
+  var dups = 0;
+  if (document.getElementById('at-dedupclean').checked) {
+    var seen = {}, kept = [];
+    lines.forEach(function(l){ if (seen[l]) { dups++; } else { seen[l] = 1; kept.push(l); } });
+    lines = kept;
+  }
+  return { lines: lines, dupRemoved: dups, emptyRemoved: before - lines.length - dups };
 }
-function atShow(lines){
+function atShow(lines, dupRemoved){
   atOut.value = lines.join('\n');
   document.getElementById('at-info').textContent = lines.length + ' line' + (lines.length === 1 ? '' : 's');
+  document.getElementById('at-stat-lines').textContent = lines.length;
+  document.getElementById('at-stat-dup').textContent = dupRemoved || 0;
+  document.getElementById('at-stat-sorts').textContent = atStats.sorts;
 }
-function atSort(dir){
+function atSort(dir, byLen){
   var ignore = document.getElementById('at-ignore').checked;
-  var lines = atLines();
-  lines.sort(function(a, b){
-    var x = ignore ? a.toLowerCase() : a, y = ignore ? b.toLowerCase() : b;
-    return dir * x.localeCompare(y);
-  });
-  atShow(lines);
+  var r = atLines(), lines = r.lines;
+  atStats.sorts++;
+  if (byLen) {
+    lines.sort(function(a, b){ return dir * (a.length - b.length || a.localeCompare(b)); });
+  } else {
+    lines.sort(function(a, b){
+      var x = ignore ? a.toLowerCase() : a, y = ignore ? b.toLowerCase() : b;
+      return dir * x.localeCompare(y);
+    });
+  }
+  atShow(lines, r.dupRemoved);
 }
-document.getElementById('at-az').addEventListener('click', function(){ atSort(1); });
-document.getElementById('at-za').addEventListener('click', function(){ atSort(-1); });
-document.getElementById('at-rev').addEventListener('click', function(){ atShow(atLines().reverse()); });
+document.getElementById('at-az').addEventListener('click', function(){ atSort(1, false); });
+document.getElementById('at-za').addEventListener('click', function(){ atSort(-1, false); });
+document.getElementById('at-len-asc').addEventListener('click', function(){ atSort(1, true); });
+document.getElementById('at-len-desc').addEventListener('click', function(){ atSort(-1, true); });
+document.getElementById('at-rev').addEventListener('click', function(){ var r = atLines(); atStats.sorts++; atShow(r.lines.reverse(), r.dupRemoved); });
 document.getElementById('at-shuf').addEventListener('click', function(){
-  var lines = atLines();
+  var r = atLines(), lines = r.lines;
+  atStats.sorts++;
   for (var i = lines.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var tmp = lines[i]; lines[i] = lines[j]; lines[j] = tmp; }
-  atShow(lines);
+  atShow(lines, r.dupRemoved);
 });
-document.getElementById('at-dedupe').addEventListener('click', function(){ atShow(Array.from(new Set(atLines()))); });
+document.getElementById('at-dedupe').addEventListener('click', function(){
+  var r = atLines(), lines = r.lines, before = lines.length;
+  lines = Array.from(new Set(lines));
+  atStats.sorts++;
+  atShow(lines, r.dupRemoved + (before - lines.length));
+});
 document.getElementById('at-copy').addEventListener('click', function(){ copyText(atOut.value, 'List copied'); });
-document.getElementById('at-clear').addEventListener('click', function(){ atIn.value = ''; atOut.value = ''; document.getElementById('at-info').textContent = ''; atIn.focus(); });
+document.getElementById('at-clear').addEventListener('click', function(){ atIn.value = ''; atOut.value = ''; document.getElementById('at-info').textContent = ''; document.getElementById('at-stat-lines').textContent = '0'; document.getElementById('at-stat-dup').textContent = '0'; atIn.focus(); });
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Word Counter — Free Online Word &amp; Character Counter | AliSuperTools</title>
-<meta name="description" content="Free online word counter tool. Count words, characters, sentences, paragraphs and reading time instantly as you type. No sign-up needed.">
+<meta name="description" content="Free online word counter with keyword density, readability scores, platform character limits (X, Instagram, LinkedIn), word goal tracker and CSV export. No sign-up.">
 <link rel="canonical" href="https://alisupertools.blogspot.com/2025/12/word-counter-free-online.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Word Counter — Free Online Word & Character Counter">
@@ -46,7 +46,7 @@
   <div class="container">
     <div class="breadcrumb"><a href="../index.html">Home</a> &#8250; <a href="../tools.html">Tools</a> &#8250; Word Counter</div>
     <h1>Word Counter</h1>
-    <p>Count words, characters, sentences, paragraphs and reading time — instantly, as you type. Free forever, no sign-up.</p>
+    <p>Count words, characters, sentences, paragraphs and reading time — plus keyword density, readability scores, platform character limits and a word goal tracker. Instantly, as you type. Free forever, no sign-up.</p>
   </div>
 </section>
 
@@ -62,10 +62,78 @@
         <div class="stat-cell"><b id="wc-sent">0</b><span>Sentences</span></div>
         <div class="stat-cell"><b id="wc-para">0</b><span>Paragraphs</span></div>
         <div class="stat-cell"><b id="wc-read">0 min</b><span>Reading Time</span></div>
+        <div class="stat-cell"><b id="wc-speak">0 min</b><span>Speaking Time</span></div>
       </div>
       <div class="tool-actions">
         <button class="btn btn-primary btn-sm" id="wc-copy" type="button">Copy Text</button>
+        <button class="btn btn-ghost btn-sm" id="wc-copystats" type="button">Copy Stats</button>
+        <a class="btn btn-ghost btn-sm" id="wc-dl" download="word-count-stats.csv" href="#">Download CSV</a>
         <button class="btn btn-ghost btn-sm" id="wc-clear" type="button">Clear</button>
+      </div>
+
+      <div class="panel" aria-label="Word goal tracker">
+        <h3>&#127919; Word Goal Tracker</h3>
+        <p class="panel-sub">Set a writing target and watch your progress fill up as you type.</p>
+        <div class="goal-row">
+          <select id="wc-goal" aria-label="Word goal">
+            <option value="250">250 words</option>
+            <option value="500" selected>500 words</option>
+            <option value="1000">1,000 words</option>
+            <option value="2500">2,500 words</option>
+            <option value="5000">5,000 words</option>
+            <option value="custom">Custom…</option>
+          </select>
+          <input type="number" id="wc-goal-custom" min="1" placeholder="Custom goal" style="display:none;width:150px" aria-label="Custom word goal">
+        </div>
+        <div class="progress"><i id="wc-goal-bar"></i></div>
+        <div class="goal-meta"><span><b id="wc-goal-cur">0</b> of <b id="wc-goal-tgt">500</b> words</span><span><b id="wc-goal-pct">0%</b></span></div>
+      </div>
+
+      <div class="panel" aria-label="Platform character limits">
+        <h3>&#128241; Platform Character Limits</h3>
+        <p class="panel-sub">See how your text fits X, Instagram, LinkedIn, search snippets and SMS.</p>
+        <div id="wc-limits"></div>
+      </div>
+
+      <div class="panel" aria-label="Readability scores">
+        <h3>&#128218; Readability</h3>
+        <p class="panel-sub">Flesch scores estimate how easy your text is to read.</p>
+        <div class="read-grid">
+          <div class="read-cell"><b id="wc-fre">–</b><span>Flesch Ease</span></div>
+          <div class="read-cell"><b id="wc-fkg">–</b><span>Grade Level</span></div>
+        </div>
+        <p class="read-label" id="wc-read-label">Type some text to see a readability rating.</p>
+      </div>
+
+      <div class="panel" aria-label="Keyword density">
+        <h3>&#128200; Keyword Density</h3>
+        <p class="panel-sub">Top keywords in your text — handy for SEO checks.</p>
+        <div id="wc-kw"><p class="kw-empty">Type at least a few words to see keyword density.</p></div>
+        <div class="kw-export">
+          <a class="btn btn-ghost btn-sm" id="kw-csv" download="keyword-density.csv" href="#">Export CSV</a>
+          <a class="btn btn-ghost btn-sm" id="kw-txt" download="keyword-density.txt" href="#">Export TXT</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="share-rate">
+      <div class="share-row">
+        <span class="sr-title">Share this tool</span>
+        <button class="btn btn-ghost btn-sm" type="button" data-share>Copy Link</button>
+        <a class="btn btn-ghost btn-sm" data-share-x href="#" target="_blank" rel="noopener">X</a>
+        <a class="btn btn-ghost btn-sm" data-share-fb href="#" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn btn-ghost btn-sm" data-share-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="rate-row">
+        <span class="sr-title">Rate this tool</span>
+        <span class="stars" data-rating>
+          <button type="button" data-star="1" aria-label="Rate 1 star">&#9733;</button>
+          <button type="button" data-star="2" aria-label="Rate 2 stars">&#9733;</button>
+          <button type="button" data-star="3" aria-label="Rate 3 stars">&#9733;</button>
+          <button type="button" data-star="4" aria-label="Rate 4 stars">&#9733;</button>
+          <button type="button" data-star="5" aria-label="Rate 5 stars">&#9733;</button>
+        </span>
+        <span class="rate-msg" data-rate-msg></span>
       </div>
     </div>
 
@@ -192,25 +260,130 @@
 <script>
 (function(){
   var input = document.getElementById('wc-input');
+  function $(id){ return document.getElementById(id); }
   function fmt(n){ return n.toLocaleString('en-US'); }
+  var STOP = {the:1,a:1,an:1,and:1,or:1,but:1,'of':1,to:1,'in':1,on:1,'for':1,with:1,at:1,by:1,from:1,as:1,is:1,was:1,were:1,are:1,be:1,been:1,being:1,it:1,its:1,this:1,that:1,these:1,those:1,i:1,you:1,he:1,she:1,we:1,they:1,them:1,his:1,her:1,our:1,your:1,their:1,not:1,no:1,do:1,does:1,did:1,will:1,would:1,can:1,could:1,should:1,has:1,have:1,had:1,so:1,if:1,than:1,then:1,there:1,here:1,when:1,where:1,what:1,which:1,who:1,how:1,all:1,any:1,each:1,few:1,more:1,most:1,other:1,some:1,such:1,only:1,own:1,same:1,too:1,very:1,just:1};
+  var LIMITS = [
+    ['X / Twitter', 280], ['Meta Title', 60], ['Meta Description', 160],
+    ['SMS', 160], ['Instagram Caption', 2200], ['LinkedIn Post', 3000]
+  ];
+  function syllables(w){
+    w = w.toLowerCase().replace(/[^a-z]/g, '');
+    if (!w) return 0;
+    if (w.length <= 3) return 1;
+    var syl = (w.match(/[aeiouy]+/g) || []).length;
+    if (w.slice(-1) === 'e') syl--;
+    return Math.max(1, syl);
+  }
+  function freLabel(f){
+    if (f >= 90) return 'Very Easy to read';
+    if (f >= 80) return 'Easy to read';
+    if (f >= 70) return 'Fairly Easy to read';
+    if (f >= 60) return 'Standard / Plain English';
+    if (f >= 50) return 'Fairly Difficult to read';
+    if (f >= 30) return 'Difficult to read';
+    return 'Very Difficult to read';
+  }
+  function goalValue(){
+    var sel = $('wc-goal'), v = sel.value;
+    if (v === 'custom') return Math.max(1, parseInt($('wc-goal-custom').value, 10) || 500);
+    return parseInt(v, 10);
+  }
   function update(){
     var t = input.value;
-    var words = t.trim() ? t.trim().split(/\s+/).length : 0;
-    var sents = t.trim() ? (t.match(/[^.!?]+[.!?]+/g) || []).length : 0;
-    if (t.trim() && sents === 0) sents = 1;
-    var paras = t.trim() ? t.split(/\n\s*\n/).filter(function(p){return p.trim();}).length : 0;
-    if (t.trim() && paras === 0) paras = 1;
+    var trimmed = t.trim();
+    var words = trimmed ? trimmed.split(/\s+/).length : 0;
+    var sents = trimmed ? (t.match(/[^.!?]+[.!?]+/g) || []).length : 0;
+    if (trimmed && sents === 0) sents = 1;
+    var paras = trimmed ? t.split(/\n\s*\n/).filter(function(p){return p.trim();}).length : 0;
+    if (trimmed && paras === 0) paras = 1;
     var mins = words / 200;
-    document.getElementById('wc-words').textContent = fmt(words);
-    document.getElementById('wc-chars').textContent = fmt(t.length);
-    document.getElementById('wc-nospace').textContent = fmt(t.replace(/\s/g,'').length);
-    document.getElementById('wc-sent').textContent = fmt(sents);
-    document.getElementById('wc-para').textContent = fmt(paras);
-    document.getElementById('wc-read').textContent = words === 0 ? '0 min' : (mins < 1 ? Math.max(1, Math.round(words/200*60)) + ' sec' : Math.round(mins) + ' min');
+    $('wc-words').textContent = fmt(words);
+    $('wc-chars').textContent = fmt(t.length);
+    $('wc-nospace').textContent = fmt(t.replace(/\s/g,'').length);
+    $('wc-sent').textContent = fmt(sents);
+    $('wc-para').textContent = fmt(paras);
+    $('wc-read').textContent = words === 0 ? '0 min' : (mins < 1 ? Math.max(1, Math.round(words/200*60)) + ' sec' : Math.round(mins) + ' min');
+    $('wc-speak').textContent = words === 0 ? '0 min' : (words/130 < 1 ? Math.max(1, Math.round(words/130*60)) + ' sec' : Math.round(words/130) + ' min');
+
+    /* Goal tracker */
+    var g = goalValue();
+    var pct = g > 0 ? Math.min(100, Math.round(words / g * 100)) : 0;
+    $('wc-goal-bar').style.width = pct + '%';
+    $('wc-goal-cur').textContent = fmt(words);
+    $('wc-goal-tgt').textContent = fmt(g);
+    $('wc-goal-pct').textContent = pct + '%';
+
+    /* Platform limits */
+    var lh = '';
+    LIMITS.forEach(function(L){
+      var name = L[0], lim = L[1], n = t.length, p = Math.min(100, Math.round(n / lim * 100));
+      var cls = n > lim ? 'over' : (p >= 90 ? 'warn' : '');
+      lh += '<div class="limit-row"><span class="lname">' + name + '</span>' +
+        '<span class="limit-bar"><i class="' + cls + '" style="width:' + p + '%"></i></span>' +
+        '<span class="lcount' + (n > lim ? ' over' : '') + '">' + fmt(n) + ' / ' + fmt(lim) + '</span></div>';
+    });
+    $('wc-limits').innerHTML = lh;
+
+    /* Readability */
+    if (words > 0 && sents > 0) {
+      var toks = trimmed.split(/\s+/), syl = 0, k;
+      for (k = 0; k < toks.length; k++) syl += syllables(toks[k]);
+      var fre = 206.835 - 1.015 * (words / sents) - 84.6 * (syl / words);
+      var fkg = 0.39 * (words / sents) + 11.8 * (syl / words) - 15.59;
+      $('wc-fre').textContent = fre.toFixed(1);
+      $('wc-fkg').textContent = Math.max(0, fkg).toFixed(1);
+      $('wc-read-label').innerHTML = 'Rating: <b>' + freLabel(fre) + '</b> — about ' + fmt(syl) + ' syllables in your text.';
+    } else {
+      $('wc-fre').textContent = '–'; $('wc-fkg').textContent = '–';
+      $('wc-read-label').textContent = 'Type some text to see a readability rating.';
+    }
+
+    /* Keyword density */
+    var kwDiv = $('wc-kw');
+    var freq = {}, total = 0, w;
+    var low = trimmed.toLowerCase().split(/[^a-zà-ž]+/);
+    for (var i = 0; i < low.length; i++) {
+      w = low[i];
+      if (w.length >= 3 && !STOP[w]) { freq[w] = (freq[w] || 0) + 1; total++; }
+    }
+    var top = Object.keys(freq).map(function(kw){ return [kw, freq[kw]]; })
+      .sort(function(a, b){ return b[1] - a[1]; }).slice(0, 10);
+    if (top.length) {
+      var th = '<table class="kw-table"><thead><tr><th>Keyword</th><th>Count</th><th>Density</th></tr></thead><tbody>';
+      top.forEach(function(row){
+        th += '<tr><td>' + row[0] + '</td><td>' + row[1] + '</td><td>' + (row[1] / words * 100).toFixed(2) + '%</td></tr>';
+      });
+      kwDiv.innerHTML = th + '</tbody></table>';
+      var csv = 'Keyword,Count,Density%\n' + top.map(function(r){ return r[0] + ',' + r[1] + ',' + (r[1] / words * 100).toFixed(2); }).join('\n');
+      var txt = 'KEYWORD DENSITY — AliSuperTools\n' + top.map(function(r){ return r[0] + ': ' + r[1] + ' (' + (r[1] / words * 100).toFixed(2) + '%)'; }).join('\n');
+      $('kw-csv').setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
+      $('kw-txt').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(txt));
+    } else {
+      kwDiv.innerHTML = '<p class="kw-empty">Type at least a few words to see keyword density.</p>';
+    }
+
+    /* Stats CSV download */
+    var stats = 'Metric,Value\nWords,' + words + '\nCharacters,' + t.length + '\nCharacters (no spaces),' + t.replace(/\s/g,'').length +
+      '\nSentences,' + sents + '\nParagraphs,' + paras + '\nReading time,' + $('wc-read').textContent + '\nSpeaking time,' + $('wc-speak').textContent;
+    $('wc-dl').setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(stats));
+  }
+  function statsText(){
+    return 'AliSuperTools — Word Count Stats\n' +
+      'Words: ' + $('wc-words').textContent + '\nCharacters: ' + $('wc-chars').textContent +
+      '\nCharacters (no spaces): ' + $('wc-nospace').textContent + '\nSentences: ' + $('wc-sent').textContent +
+      '\nParagraphs: ' + $('wc-para').textContent + '\nReading time: ' + $('wc-read').textContent +
+      '\nSpeaking time: ' + $('wc-speak').textContent;
   }
   input.addEventListener('input', update);
-  document.getElementById('wc-copy').addEventListener('click', function(){ copyText(input.value, 'Text copied'); });
-  document.getElementById('wc-clear').addEventListener('click', function(){ input.value=''; update(); input.focus(); });
+  $('wc-goal').addEventListener('change', function(){
+    $('wc-goal-custom').style.display = this.value === 'custom' ? '' : 'none';
+    update();
+  });
+  $('wc-goal-custom').addEventListener('input', update);
+  $('wc-copy').addEventListener('click', function(){ copyText(input.value, 'Text copied'); });
+  $('wc-copystats').addEventListener('click', function(){ copyText(statsText(), 'Stats copied'); });
+  $('wc-clear').addEventListener('click', function(){ input.value=''; update(); input.focus(); });
   update();
 })();
 </script>

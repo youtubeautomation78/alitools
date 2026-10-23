@@ -216,3 +216,61 @@ h1,h2,h3,h4{font-family:var(--font-h);color:var(--ink);line-height:1.25;font-wei
 .to-top{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--grad);color:#fff;border:0;cursor:pointer;box-shadow:var(--shadow-lg);display:grid;place-items:center;opacity:0;pointer-events:none;transition:.3s;z-index:150}
 .to-top.show{opacity:1;pointer-events:auto}
 .to-top svg{width:20px;height:20px}
+
+/* ---------- Competitor-design upgrade (Oct 2026) ---------- */
+.tool-badge{display:inline-block;background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:3px 11px;border-radius:99px;margin-bottom:9px}
+.tool-card{position:relative}
+.fav-star{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;color:#CBD5E1;font-size:1.1rem;line-height:1;cursor:pointer;z-index:2;transition:.2s;display:grid;place-items:center}
+.fav-star:hover{border-color:var(--accent);color:var(--accent)}
+.fav-star.active{color:#F59E0B;border-color:#F59E0B;background:#FFFBEB}
+.fav-filter{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;font-weight:600;font-size:.95rem;color:var(--muted);cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:9px 20px}
+.fav-filter.active{color:#B45309;border-color:#F59E0B;background:#FFFBEB}
+
+/* Word counter pro panels */
+.panel{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-s);padding:18px 20px;margin-top:18px}
+.panel h3{font-size:1.02rem;margin-bottom:4px}
+.panel .panel-sub{font-size:.88rem;color:var(--muted);margin-bottom:14px}
+.goal-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.goal-row select,.goal-row input[type=number]{border:1.5px solid var(--line);border-radius:10px;padding:9px 13px;font-family:var(--font-b);font-size:.95rem;background:#fff;color:var(--ink)}
+.progress{height:12px;background:#E2E8F0;border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .25s}
+.goal-meta{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);margin-top:7px}
+.goal-meta b{color:var(--ink)}
+.limit-row{display:grid;grid-template-columns:130px 1fr 86px;gap:12px;align-items:center;margin-bottom:10px;font-size:.9rem}
+.limit-row .lname{font-weight:600;color:var(--ink);white-space:nowrap}
+.limit-row .lcount{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.limit-row .lcount.over{color:#DC2626;font-weight:700}
+.limit-bar{height:8px;background:#E2E8F0;border-radius:99px;overflow:hidden}
+.limit-bar i{display:block;height:100%;background:var(--primary);border-radius:99px;transition:width .25s}
+.limit-bar i.warn{background:#F59E0B}
+.limit-bar i.over{background:#DC2626}
+.read-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.read-cell{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 10px;text-align:center}
+.read-cell b{display:block;font-family:var(--font-h);font-size:1.35rem;color:var(--primary)}
+.read-cell span{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.read-label{font-size:.88rem;color:var(--muted);margin-top:10px}
+.read-label b{color:var(--ink)}
+.kw-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.kw-table th{text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);padding:8px 10px;border-bottom:2px solid var(--line)}
+.kw-table td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink)}
+.kw-table tr:hover td{background:#F1F5F9}
+.kw-empty{color:var(--muted);font-size:.92rem;padding:6px 0}
+.kw-export{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+a.btn-sm{text-decoration:none}
+
+/* Share + rating block on tool pages */
+.share-rate{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-top:44px;display:grid;gap:16px}
+.share-row,.rate-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sr-title{font-family:var(--font-h);font-weight:700;color:var(--ink);font-size:.98rem;min-width:110px}
+.stars{display:inline-flex;gap:2px}
+.stars button{background:none;border:0;font-size:1.55rem;color:#CBD5E1;cursor:pointer;line-height:1;padding:2px;transition:.15s}
+.stars button.lit{color:#F59E0B}
+.rate-msg{font-size:.88rem;color:var(--muted)}
+
+/* Tool usage stats (organizer) */
+.usage-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:.88rem;color:var(--muted)}
+.usage-stats b{color:var(--primary);font-variant-numeric:tabular-nums}
+@media(max-width:640px){
+  .limit-row{grid-template-columns:110px 1fr 76px}
+  .goal-row select,.goal-row input[type=number]{width:100%}
+}
