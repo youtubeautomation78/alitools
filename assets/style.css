@@ -395,3 +395,13 @@ a.btn-sm{text-decoration:none}
 @media (prefers-reduced-motion: reduce){
   .tool-card,.tool-card::before,.tool-card .tool-icon{animation:none}
 }
+
+/* ---------- Scrolling ticker under the header ---------- */
+.ticker{background:linear-gradient(90deg,#F97316,#EC4899);color:#fff;overflow:hidden;padding:8px 0}
+.ticker-track{display:flex;width:max-content;animation:tick-scroll 26s linear infinite}
+.ticker-group{display:flex;align-items:center;flex:none}
+.tick-item{font-family:var(--font-h);font-weight:700;font-size:.85rem;letter-spacing:.22em;padding:0 18px;white-space:nowrap}
+.tick-dot{opacity:.75;font-size:.7rem}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes tick-scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.ticker-track{animation:none}}
