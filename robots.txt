@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alitools-nine.vercel.app/sitemap.xml
+Sitemap: https://www.hausamusics.com/sitemap.xml
