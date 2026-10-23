@@ -39,10 +39,13 @@
       document.querySelectorAll(".faq-item.open").forEach(function (o) {
         o.classList.remove("open");
         o.querySelector(".faq-a").style.maxHeight = null;
+        var oq = o.querySelector(".faq-q");
+        if (oq) oq.setAttribute("aria-expanded", "false");
       });
       if (!open) {
         item.classList.add("open");
         a.style.maxHeight = a.scrollHeight + "px";
+        q.setAttribute("aria-expanded", "true");
       }
     });
   });

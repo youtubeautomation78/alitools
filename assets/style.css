@@ -334,3 +334,6 @@ a.btn-sm{text-decoration:none}
 .tb-fr-grid input::placeholder{color:#64748B}
 .tb-fr-grid input:focus{outline:0;border-color:#0284C7;box-shadow:0 0 0 4px rgba(2,132,199,.25)}
 .tb-check{display:inline-flex;gap:8px;align-items:center;margin-top:14px;font-size:.93rem;color:#CBD5E1;cursor:pointer}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 18px;z-index:300;border-radius:0 0 10px 0;font-weight:600}
+.skip-link:focus{left:0;text-decoration:none}
