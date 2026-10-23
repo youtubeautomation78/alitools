@@ -421,3 +421,104 @@
     cards.forEach(function (c) { io.observe(c); });
   } catch (e) {}
 })();
+
+/* Intro: glass panel "ALI FREE ONLINE TOOLS" that bursts like fire to reveal the site.
+   Homepage: every load. Other pages: once per session. Click/Esc skips. Reduced motion: off. */
+(function () {
+  try {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var path = (window.location && window.location.pathname) || "/";
+    var isHome = /(^|\/)(index\.html)?$/.test(path);
+    var seen = false;
+    try { seen = sessionStorage.getItem("ast-intro") === "1"; } catch (e) {}
+    if (!isHome && seen) return;
+    try { sessionStorage.setItem("ast-intro", "1"); } catch (e) {}
+    var canAnimate = typeof Element !== "undefined" && !!(Element.prototype && Element.prototype.animate);
+
+    var overlay = document.createElement("div");
+    overlay.className = "intro-overlay";
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.innerHTML =
+      '<div class="intro-panel">' +
+        '<div class="intro-logo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>' +
+        '<div class="intro-text">ALI <span>FREE ONLINE TOOLS</span></div>' +
+        '<div class="intro-bar"><i></i></div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    document.body.style.overflow = "hidden";
+    var panel = overlay.querySelector(".intro-panel");
+    var finished = false;
+
+    function cleanup() {
+      document.body.style.overflow = "";
+      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }
+    function finish() {
+      if (finished) return;
+      finished = true;
+      overlay.classList.add("bye");
+      setTimeout(cleanup, 200);
+    }
+    function burst() {
+      if (finished) return;
+      if (!canAnimate) { finish(); return; }
+      finished = true;
+      var r = panel.getBoundingClientRect();
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var flash = document.createElement("div");
+      flash.className = "intro-flash";
+      flash.style.left = cx + "px"; flash.style.top = cy + "px";
+      flash.style.width = "340px"; flash.style.height = "340px";
+      document.body.appendChild(flash);
+      flash.animate([
+        { transform: "translate(-50%,-50%) scale(.3)", opacity: 1 },
+        { transform: "translate(-50%,-50%) scale(2.9)", opacity: 0 }
+      ], { duration: 480, easing: "ease-out", fill: "forwards" });
+      setTimeout(function () { if (flash.parentNode) flash.parentNode.removeChild(flash); }, 560);
+      panel.style.opacity = "0";
+      var cols = 3, rows = 3, i, j;
+      for (i = 0; i < cols; i++) {
+        for (j = 0; j < rows; j++) {
+          var sh = document.createElement("div");
+          sh.className = "intro-shard";
+          var w = r.width / cols, h = r.height / rows;
+          var x = r.left + i * w, y = r.top + j * h;
+          sh.style.left = x + "px"; sh.style.top = y + "px";
+          sh.style.width = w + "px"; sh.style.height = h + "px";
+          var q = function () { return Math.floor(Math.random() * 18); };
+          sh.style.clipPath = "polygon(" + q() + "% " + q() + "%, " + (100 - q()) + "% " + q() + "%, " + (100 - q()) + "% " + (100 - q()) + "%, " + q() + "% " + (100 - q()) + "%)";
+          document.body.appendChild(sh);
+          var dx = (x + w / 2 - cx) * (1.7 + Math.random()) + (Math.random() * 100 - 50);
+          var dy = (y + h / 2 - cy) * (1.7 + Math.random()) + (Math.random() * 100 - 50) + 70;
+          sh.animate([
+            { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+            { transform: "translate(" + dx + "px," + dy + "px) rotate(" + (Math.random() * 280 - 140) + "deg)", opacity: 0 }
+          ], { duration: 700 + Math.random() * 260, easing: "cubic-bezier(.17,.67,.35,1)", fill: "forwards" });
+          (function (el) { setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 1050); })(sh);
+        }
+      }
+      for (var k = 0; k < 12; k++) {
+        var em = document.createElement("div");
+        em.className = "intro-ember";
+        em.style.left = cx + "px"; em.style.top = cy + "px";
+        document.body.appendChild(em);
+        var ang = Math.random() * Math.PI * 2, dist = 130 + Math.random() * 220;
+        em.animate([
+          { transform: "translate(-50%,-50%)", opacity: 1 },
+          { transform: "translate(" + (Math.cos(ang) * dist - 3) + "px," + (Math.sin(ang) * dist - 3) + "px)", opacity: 0 }
+        ], { duration: 620 + Math.random() * 320, easing: "ease-out", fill: "forwards" });
+        (function (el) { setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 1000); })(em);
+      }
+      overlay.classList.add("bye");
+      setTimeout(cleanup, 620);
+    }
+
+    overlay.addEventListener("click", finish);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") finish(); });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { overlay.classList.add("show"); });
+    });
+    setTimeout(burst, 1180);
+    setTimeout(function () { if (!finished) finish(); }, 3200); /* hard safety net */
+  } catch (e) {}
+})();
