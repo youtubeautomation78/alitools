@@ -90,6 +90,7 @@ function mdToHtml(md) {
 /* ---------- ADSTERRA ads (client ad units, added 2026-10-26; same codes as the static pages) ---------- */
 const AD_SOCIAL = '<!-- ADSTERRA SOCIAL BAR (client ad unit, added 2026-10-26) -->\n<script src="https://pl32037781.profitableratecpmnetwork.com/ce/9b/45/ce9b45552ae7d2736efe5e2d33a180ff.js"></script>\n';
 const AD_BANNER = '<!-- ADSTERRA BANNER 728x90 (client ad unit, added 2026-10-26) -->\n<div class="ad-banner" style="text-align:center;margin:28px auto;max-width:100%;overflow:hidden" aria-hidden="true">\n<script>\natOptions = {\n\t\t\'key\' : \'d54b39179c7ae5d1958f27393deaca08\',\n\t\t\'format\' : \'iframe\',\n\t\t\'height\' : 90,\n\t\t\'width\' : 728,\n\t\t\'params\' : {}\n\t};\n</script>\n<script src="https://www.highrevenueformat.com/d54b39179c7ae5d1958f27393deaca08/invoke.js"></script>\n</div>\n';
+const AD_BANNER_468 = '<!-- ADSTERRA BANNER 468x60 (client ad unit, added 2026-10-26) -->\n<div class="ad-banner" style="text-align:center;margin:18px auto 6px;max-width:100%;overflow:hidden" aria-hidden="true">\n<script>\natOptions = {\n\t\t\'key\' : \'eac475e0194723052adb5c5c36fa8f5b\',\n\t\t\'format\' : \'iframe\',\n\t\t\'height\' : 60,\n\t\t\'width\' : 468,\n\t\t\'params\' : {}\n\t};\n</script>\n<script src="https://www.highrevenueformat.com/eac475e0194723052adb5c5c36fa8f5b/invoke.js"></script>\n</div>\n';
 
 /* ---------- site chrome (header / footer / ticker taken from index.html so blog pages always match) ---------- */
 function chrome(prefix) {
@@ -168,7 +169,7 @@ function articlePage(post, c) {
   const cover = post.meta.image ? '<img class="article-cover" src="' + safeUrl(post.meta.image) + '" alt="' + esc(post.meta.title) + '">' : '';
   return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: post.meta.title + ' | Ali Super Tools', description: post.meta.description, url, type: 'article', image: post.meta.image, schema, prefix: '../' }) + '</head>\n<body>\n' +
   '<a class="skip-link" href="#main">Skip to content</a>\n' + c.header + '\n' + c.ticker + '\n' +
-  '<main id="main">\n<section class="section"><div class="container"><div class="article-wrap">\n' +
+  AD_BANNER_468 + '<main id="main">\n<section class="section"><div class="container"><div class="article-wrap">\n' +
   '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="../blog.html">Blog</a> &rsaquo; <span>' + esc(post.meta.title) + '</span></nav>\n' +
   '<h1 class="article-title">' + esc(post.meta.title) + '</h1>\n' +
   '<p class="blog-meta"><span class="chip">' + esc(post.meta.category || 'General') + '</span> ' + fmtDate(post.meta.date) + ' &middot; ' + readingTime(post.body) + ' min read</p>\n' +
@@ -195,7 +196,7 @@ function indexPage(posts, c) {
     { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE + '/blog.html' } ] };
   return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: 'Blog - Guides & Tips | Ali Super Tools', description: 'Guides, tips and updates from Ali Super Tools - learn how to write faster, fix text in seconds and get more from our free online tools.', url, schema, prefix: '' }) + '</head>\n<body>\n' +
   '<a class="skip-link" href="#main">Skip to content</a>\n' + c.header + '\n' + c.ticker + '\n' +
-  '<main id="main">\n<section class="page-hero"><div class="container"><h1>Blog</h1><p>Guides, tips and updates to help you write better and work faster with our free online tools.</p></div></section>\n' +
+  AD_BANNER_468 + '<main id="main">\n<section class="page-hero"><div class="container"><h1>Blog</h1><p>Guides, tips and updates to help you write better and work faster with our free online tools.</p></div></section>\n' +
   '<section class="section"><div class="container">' + grid + '</div></section>\n</main>\n' + AD_BANNER + c.footer + '\n<div class="toast" id="toast" role="status" aria-live="polite"></div>\n' +
   '<script src="assets/main.js" defer></script>\n' + AD_SOCIAL + '</body>\n</html>\n';
 }
