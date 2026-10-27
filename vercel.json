@@ -1,1 +1,1 @@
-{"buildCommand":"node build-blog.js","outputDirectory":".","redirects":[{"destination":"/admin/","permanent":false,"source":"/admin"}]}
+{"buildCommand":"node build-blog.js","outputDirectory":".","redirects":[{"destination":"/admin/","permanent":false,"source":"/admin"},{"source":"/tools","destination":"/tools.html","permanent":false},{"source":"/blog","destination":"/blog.html","permanent":false}]}
