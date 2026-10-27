@@ -103,9 +103,9 @@ function chrome(prefix) {
           .replace('<a href="../blog.html">', '<a href="../blog.html" class="active">')
     : html.replace(' class="active"', '')
           .replace('<a href="blog.html">', '<a href="blog.html" class="active">'));
-  const ticker = '<div class="ticker" aria-hidden="true"><div class="ticker-track">' +
-    ('<div class="ticker-group">' + ('<span class="tick-item">FREE ONLINE TOOLS</span><span class="tick-dot">&#10022;</span>').repeat(8) + '</div>').repeat(2) +
-    '</div></div>';
+  const TICK_PHRASES = ['FREE ONLINE TOOLS', 'NO SIGN-UP', 'WORD COUNTER', 'SENTENCE CASE', 'YOUTUBE THUMBNAILS', 'TEXT TOOLS', '100% FREE', 'FAST &amp; PRIVATE'];
+  const tickGroup = '<div class="ticker-group">' + TICK_PHRASES.map(function (p) { return '<span class="tick-item">' + p + '</span><span class="tick-dot">&#10022;</span>'; }).join('') + '</div>';
+  const ticker = '<div class="ticker" aria-hidden="true"><div class="ticker-track">' + tickGroup + tickGroup + '</div></div>';
   return { header: fix(header), footer: fix(footer), ticker };
 }
 
