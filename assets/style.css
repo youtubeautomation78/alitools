@@ -448,3 +448,10 @@ a.btn-sm{text-decoration:none}
 .article-cta{margin-top:42px;background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(249,115,22,.08));border:1.5px solid #FB923C;border-radius:var(--radius);padding:28px;text-align:center}
 .article-cta h2{margin-bottom:8px}
 .article-cta p{color:var(--muted);margin-bottom:18px}
+
+/* Ad-blocker notice bar (added 2026-10-27) */
+.adblock-note{position:fixed;left:50%;bottom:18px;transform:translate(-50%,140%);width:min(680px,calc(100% - 24px));z-index:1200;background:#0F172A;color:#F1F5F9;border:1.5px solid #FB923C;border-radius:14px;box-shadow:0 18px 40px rgba(2,6,23,.45);padding:14px 46px 14px 18px;transition:transform .35s ease}
+.adblock-note.show{transform:translate(-50%,0)}
+.adblock-note p{margin:0;font-size:.95rem;line-height:1.5}
+.adblock-note strong{color:#FDBA74}
+.adblock-note-x{position:absolute;top:6px;right:10px;background:none;border:none;color:#FDBA74;font-size:1.5rem;line-height:1;cursor:pointer;padding:4px 8px}

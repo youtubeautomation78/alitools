@@ -421,3 +421,49 @@
     cards.forEach(function (c) { io.observe(c); });
   } catch (e) {}
 })();
+
+/* Ad-blocker notice (added 2026-10-27): a blocker stops the ad scripts from
+   loading at all, so ads cannot be forced past one. When blocking is detected
+   we politely ask the visitor to whitelist the site. Dismissible; at most
+   once per 3 days; only on pages that carry ads. */
+(function () {
+  try {
+    if (!document.querySelector(".ad-banner")) return;
+    var KEY = "ast-adblock-notice";
+    try {
+      var last = parseInt(localStorage.getItem(KEY) || "0", 10);
+      if (last && Date.now() - last < 3 * 24 * 60 * 60 * 1000) return;
+    } catch (e) {}
+    function baitHidden() {
+      var bait = document.createElement("div");
+      bait.className = "ad-banner adsbygoogle textads banner-ad ad-unit";
+      bait.style.cssText = "position:absolute;left:-9999px;top:0;width:120px;height:40px;";
+      bait.innerHTML = "&nbsp;";
+      document.body.appendChild(bait);
+      var hidden = bait.offsetHeight === 0 ||
+        getComputedStyle(bait).display === "none" ||
+        getComputedStyle(bait).visibility === "hidden";
+      bait.remove();
+      return hidden;
+    }
+    function check() {
+      var noIframe = document.querySelectorAll(".ad-banner iframe").length === 0;
+      if (!(baitHidden() || noIframe)) return;
+      if (document.querySelector(".adblock-note")) return;
+      var bar = document.createElement("div");
+      bar.className = "adblock-note";
+      bar.setAttribute("role", "note");
+      bar.innerHTML = '<p><strong>Ads keep Ali Super Tools free.</strong> It looks like an ad blocker is on &mdash; please consider allowing ads on this site, then refresh. Shukriya! &#128591;</p><button type="button" class="adblock-note-x" aria-label="Dismiss">&times;</button>';
+      document.body.appendChild(bar);
+      requestAnimationFrame(function () { bar.classList.add("show"); });
+      function dismiss() {
+        bar.classList.remove("show");
+        try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+        setTimeout(function () { bar.remove(); }, 350);
+      }
+      bar.querySelector(".adblock-note-x").addEventListener("click", dismiss);
+    }
+    if (document.readyState === "complete") setTimeout(check, 3500);
+    else window.addEventListener("load", function () { setTimeout(check, 3500); });
+  } catch (e) {}
+})();
