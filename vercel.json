@@ -1,1 +1,102 @@
-{"buildCommand":"node build-blog.js","headers":[{"headers":[{"key":"Strict-Transport-Security","value":"max-age=63072000; includeSubDomains"}],"source":"/(.*)"}],"outputDirectory":".","redirects":[{"destination":"/admin/","permanent":false,"source":"/admin"},{"destination":"/tools.html","permanent":false,"source":"/tools"},{"destination":"/blog.html","permanent":false,"source":"/blog"},{"destination":"/tools.html","permanent":false,"source":"/tools/"},{"destination":"/blog.html","permanent":false,"source":"/blog/"}]}
+{
+ "buildCommand": "node build-blog.js",
+ "headers": [
+  {
+   "headers": [
+    {
+     "key": "Strict-Transport-Security",
+     "value": "max-age=63072000; includeSubDomains"
+    }
+   ],
+   "source": "/(.*)"
+  }
+ ],
+ "outputDirectory": ".",
+ "redirects": [
+  {
+   "destination": "/admin/",
+   "permanent": false,
+   "source": "/admin"
+  },
+  {
+   "destination": "/tools.html",
+   "permanent": false,
+   "source": "/tools"
+  },
+  {
+   "destination": "/blog.html",
+   "permanent": false,
+   "source": "/blog"
+  },
+  {
+   "destination": "/tools.html",
+   "permanent": false,
+   "source": "/tools/"
+  },
+  {
+   "destination": "/blog.html",
+   "permanent": false,
+   "source": "/blog/"
+  },
+  {
+   "destination": "/about.html",
+   "permanent": false,
+   "source": "/about"
+  },
+  {
+   "destination": "/contact.html",
+   "permanent": false,
+   "source": "/contact"
+  },
+  {
+   "destination": "/privacy-policy.html",
+   "permanent": false,
+   "source": "/privacy-policy"
+  },
+  {
+   "destination": "/terms.html",
+   "permanent": false,
+   "source": "/terms"
+  },
+  {
+   "destination": "/tools/word-counter.html",
+   "permanent": false,
+   "source": "/tools/word-counter"
+  },
+  {
+   "destination": "/tools/sentence-case-converter.html",
+   "permanent": false,
+   "source": "/tools/sentence-case-converter"
+  },
+  {
+   "destination": "/tools/youtube-thumbnail-downloader.html",
+   "permanent": false,
+   "source": "/tools/youtube-thumbnail-downloader"
+  },
+  {
+   "destination": "/tools/remove-extra-spaces.html",
+   "permanent": false,
+   "source": "/tools/remove-extra-spaces"
+  },
+  {
+   "destination": "/tools/comma-separator.html",
+   "permanent": false,
+   "source": "/tools/comma-separator"
+  },
+  {
+   "destination": "/tools/paragraph-counter.html",
+   "permanent": false,
+   "source": "/tools/paragraph-counter"
+  },
+  {
+   "destination": "/tools/alphabetical-text-organizer.html",
+   "permanent": false,
+   "source": "/tools/alphabetical-text-organizer"
+  },
+  {
+   "destination": "/tools/text-to-slug-generator.html",
+   "permanent": false,
+   "source": "/tools/text-to-slug-generator"
+  }
+ ]
+}
