@@ -89,8 +89,8 @@ function mdToHtml(md) {
 
 /* ---------- ADSTERRA ads (client ad units, added 2026-10-26; same codes as the static pages) ---------- */
 const AD_SOCIAL = '<!-- ADSTERRA SOCIAL BAR (client ad unit, added 2026-10-26) -->\n<script src="https://pl32037781.profitableratecpmnetwork.com/ce/9b/45/ce9b45552ae7d2736efe5e2d33a180ff.js"></script>\n';
-const AD_BANNER = '<!-- ADSTERRA BANNER 728x90 (client ad unit, added 2026-10-26) -->\n<div class="ad-banner" style="text-align:center;margin:28px auto;max-width:100%;overflow:hidden" aria-hidden="true">\n<script>\natOptions = {\n\t\t\'key\' : \'d54b39179c7ae5d1958f27393deaca08\',\n\t\t\'format\' : \'iframe\',\n\t\t\'height\' : 90,\n\t\t\'width\' : 728,\n\t\t\'params\' : {}\n\t};\n</script>\n<script src="https://www.highrevenueformat.com/d54b39179c7ae5d1958f27393deaca08/invoke.js"></script>\n</div>\n';
-const AD_BANNER_468 = '<!-- ADSTERRA BANNER 468x60 (client ad unit, added 2026-10-26) -->\n<div class="ad-banner" style="text-align:center;margin:18px auto 6px;max-width:100%;overflow:hidden" aria-hidden="true">\n<script>\natOptions = {\n\t\t\'key\' : \'eac475e0194723052adb5c5c36fa8f5b\',\n\t\t\'format\' : \'iframe\',\n\t\t\'height\' : 60,\n\t\t\'width\' : 468,\n\t\t\'params\' : {}\n\t};\n</script>\n<script src="https://www.highrevenueformat.com/eac475e0194723052adb5c5c36fa8f5b/invoke.js"></script>\n</div>\n';
+const AD_BANNER = '<!-- ADSTERRA BANNER 728x90 (client ad unit, added 2026-10-26) -->\n<div class="ad-banner" style="text-align:center;margin:28px auto;max-width:100%;overflow:hidden;min-height:90px" aria-hidden="true">\n<script>\natOptions = {\n\t\t\'key\' : \'d54b39179c7ae5d1958f27393deaca08\',\n\t\t\'format\' : \'iframe\',\n\t\t\'height\' : 90,\n\t\t\'width\' : 728,\n\t\t\'params\' : {}\n\t};\n</script>\n<script src="https://www.highrevenueformat.com/d54b39179c7ae5d1958f27393deaca08/invoke.js"></script>\n</div>\n';
+const AD_BANNER_468 = '<!-- ADSTERRA BANNER 468x60 (client ad unit, added 2026-10-26) -->\n<div class="ad-banner" style="text-align:center;margin:18px auto 6px;max-width:100%;overflow:hidden;min-height:60px" aria-hidden="true">\n<script>\natOptions = {\n\t\t\'key\' : \'eac475e0194723052adb5c5c36fa8f5b\',\n\t\t\'format\' : \'iframe\',\n\t\t\'height\' : 60,\n\t\t\'width\' : 468,\n\t\t\'params\' : {}\n\t};\n</script>\n<script src="https://www.highrevenueformat.com/eac475e0194723052adb5c5c36fa8f5b/invoke.js"></script>\n</div>\n';
 
 /* ---------- site chrome (header / footer / ticker taken from index.html so blog pages always match) ---------- */
 function chrome(prefix) {
@@ -139,6 +139,8 @@ function head(o) {
   '<link rel="preconnect" href="https://googleads.g.doubleclick.net">\n' +
   '<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">\n' +
   '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">\n' +
+  '<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2">\n' +
+  '<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2">\n' +
   '<link rel="stylesheet" href="' + P + 'assets/style.css">\n' +
   '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4856164099586969" crossorigin="anonymous"></script>\n' +
   (o.schema ? '<script type="application/ld+json">' + JSON.stringify(o.schema) + '</script>\n' : '');
