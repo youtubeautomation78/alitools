@@ -28,7 +28,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Category", name: "category", widget: "select", options: ["Tools Guide", "Text Tips", "YouTube Tips", "Website News", "General"], default: "General" }
+      - { label: "Category", name: "category", widget: "select", options: ["Tools Guide", "Text Tips", "YouTube Tips", "Website News", "General", "Writing Guides", "Creator Tips"], default: "General" }
       - { label: "Short Description (shown on blog list + Google)", name: "description", widget: "text" }
       - { label: "Cover Image (optional)", name: "image", widget: "image", required: false }
       - { label: "Draft - hide this post for now", name: "draft", widget: "boolean", default: false, required: false }

@@ -97,6 +97,21 @@
    "destination": "/tools/text-to-slug-generator.html",
    "permanent": false,
    "source": "/tools/text-to-slug-generator"
+  },
+  {
+   "destination": "/tools/character-counter.html",
+   "permanent": false,
+   "source": "/tools/character-counter"
+  },
+  {
+   "destination": "/tools/case-converter.html",
+   "permanent": false,
+   "source": "/tools/case-converter"
+  },
+  {
+   "destination": "/tools/remove-line-breaks.html",
+   "permanent": false,
+   "source": "/tools/remove-line-breaks"
   }
  ]
 }

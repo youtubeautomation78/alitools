@@ -455,3 +455,8 @@ a.btn-sm{text-decoration:none}
 .adblock-note p{margin:0;font-size:.95rem;line-height:1.5}
 .adblock-note strong{color:#FDBA74}
 .adblock-note-x{position:absolute;top:6px;right:10px;background:none;border:none;color:#FDBA74;font-size:1.5rem;line-height:1;cursor:pointer;padding:4px 8px}
+
+/* limits table (character counter) */
+.prose table.limits{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:.95rem}
+.prose table.limits th,.prose table.limits td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.prose table.limits th{font-weight:600}

@@ -130,9 +130,9 @@ function head(o) {
   '<link rel="icon" href="' + P + 'assets/favicon.svg" type="image/svg+xml">\n' +
   '<link rel="icon" type="image/png" sizes="32x32" href="' + P + 'assets/favicon-32.png">\n' +
   '<link rel="apple-touch-icon" sizes="180x180" href="' + P + 'assets/apple-touch-icon.png">\n' +
-  '<link rel="manifest" href="' + P + 'assets/site.webmanifest">\n' +
+  '<link rel="manifest" href="' + P + 'site.webmanifest">\n' +
   '<meta name="theme-color" content="#2563EB">\n' +
-  '<meta name="robots" content="index, follow, max-image-preview:large">\n' +
+  '<meta name="robots" content="' + (o.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large') + '">\n' +
   '<link rel="alternate" type="application/rss+xml" title="Ali Super Tools Blog" href="' + SITE + '/rss.xml">\n' +
   '<script>(function(){try{var t=localStorage.getItem("ast-theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>\n' +
   '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
@@ -170,7 +170,7 @@ function articlePage(post, c) {
       { '@type': 'ListItem', position: 3, name: post.meta.title, item: url } ] }
   ];
   const cover = post.meta.image ? '<img class="article-cover" src="' + safeUrl(post.meta.image) + '" alt="' + esc(post.meta.title) + '">' : '';
-  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: post.meta.title + ' | Ali Super Tools', description: post.meta.description, url, type: 'article', image: post.meta.image, schema, prefix: '../' }) + '</head>\n<body>\n' +
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: post.meta.title + ' | Ali Super Tools', description: post.meta.description, url, type: 'article', image: post.meta.image, schema, prefix: '../', noindex: post.meta.noindex === true }) + '</head>\n<body>\n' +
   '<a class="skip-link" href="#main">Skip to content</a>\n' + c.header + '\n' + c.ticker + '\n' +
   AD_BANNER_468 + '<main id="main">\n<section class="section"><div class="container"><div class="article-wrap">\n' +
   '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="../blog.html">Blog</a> &rsaquo; <span>' + esc(post.meta.title) + '</span></nav>\n' +
@@ -197,7 +197,7 @@ function indexPage(posts, c) {
   const schema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
     { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE + '/blog.html' } ] };
-  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: 'Blog - Guides & Tips | Ali Super Tools', description: 'Guides, tips and updates from Ali Super Tools - learn how to write faster, fix text in seconds and get more from our free online tools.', url, schema, prefix: '' }) + '</head>\n<body>\n' +
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: 'Blog - Guides & Tips | Ali Super Tools', description: 'Guides, tips and updates from Ali Super Tools - learn how to write faster, fix text in seconds and get more from our free online tools.', url, schema, prefix: '', noindex: posts.every(p => p.meta.noindex === true) }) + '</head>\n<body>\n' +
   '<a class="skip-link" href="#main">Skip to content</a>\n' + c.header + '\n' + c.ticker + '\n' +
   AD_BANNER_468 + '<main id="main">\n<section class="page-hero"><div class="container"><h1>Blog</h1><p>Guides, tips and updates to help you write better and work faster with our free online tools.</p></div></section>\n' +
   '<section class="section"><div class="container">' + grid + '</div></section>\n</main>\n' + AD_BANNER + c.footer + '\n<div class="toast" id="toast" role="status" aria-live="polite"></div>\n' +
@@ -242,9 +242,14 @@ function main() {
   let sm = fs.readFileSync(smPath, 'utf8');
   sm = sm.replace(/<url>(?:(?!<\/url>)[\s\S])*?<loc>https:\/\/www\.hausamusics\.com\/(blog\.html|blog\/[^<]*)<\/loc>[\s\S]*?<\/url>\n?/g, '');
   const today = new Date().toISOString().slice(0, 10);
-  let blogUrls = '<url><loc>' + SITE + '/blog.html</loc><lastmod>' + today + '</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n';
-  for (const p of posts) {
-    blogUrls += '<url><loc>' + SITE + '/blog/' + p.slug + '.html</loc><lastmod>' + String(p.meta.date).slice(0, 10) + '</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n';
+  const indexable = posts.filter(p => p.meta.noindex !== true);
+  let blogUrls = '';
+  if (indexable.length) {
+    const latest = indexable.map(p => String(p.meta.date).slice(0, 10)).sort().pop();
+    blogUrls += '<url><loc>' + SITE + '/blog.html</loc><lastmod>' + latest + '</lastmod></url>\n';
+  }
+  for (const p of indexable) {
+    blogUrls += '<url><loc>' + SITE + '/blog/' + p.slug + '.html</loc><lastmod>' + String(p.meta.date).slice(0, 10) + '</lastmod></url>\n';
   }
   sm = sm.replace('</urlset>', blogUrls + '</urlset>');
   fs.writeFileSync(smPath, sm);

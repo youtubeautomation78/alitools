@@ -4,6 +4,7 @@ date: 2026-10-23
 category: "Website News"
 description: "Welcome to the Ali Super Tools blog - here we share simple guides, writing tips and updates that help you get more from our free online tools."
 draft: false
+noindex: true
 ---
 
 We are happy to launch the **Ali Super Tools blog**! This is the place where we will share simple, practical guides that help you write faster, clean up text in seconds and get more value from our free online tools.
