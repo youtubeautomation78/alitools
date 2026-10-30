@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Live domain: www.hausamusics.com -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.hausamusics.com/</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.hausamusics.com/tools.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/word-counter.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/sentence-case-converter.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/youtube-thumbnail-downloader.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/remove-extra-spaces.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/comma-separator.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/paragraph-counter.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/alphabetical-text-organizer.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/text-to-slug-generator.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/character-counter.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/case-converter.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/tools/remove-line-breaks.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.hausamusics.com/about.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.hausamusics.com/contact.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.hausamusics.com/privacy-policy.html</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.hausamusics.com/terms.html</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.hausamusics.com/</loc></url>
+  <url><loc>https://www.hausamusics.com/tools.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/word-counter.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/sentence-case-converter.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/youtube-thumbnail-downloader.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/remove-extra-spaces.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/comma-separator.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/paragraph-counter.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/alphabetical-text-organizer.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/text-to-slug-generator.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/character-counter.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/case-converter.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/remove-line-breaks.html</loc></url>
+  <url><loc>https://www.hausamusics.com/tools/text-to-binary.html</loc></url>
+  <url><loc>https://www.hausamusics.com/about.html</loc></url>
+  <url><loc>https://www.hausamusics.com/contact.html</loc></url>
+  <url><loc>https://www.hausamusics.com/privacy-policy.html</loc></url>
+  <url><loc>https://www.hausamusics.com/terms.html</loc></url>
 <url><loc>https://www.hausamusics.com/blog.html</loc><lastmod>2026-10-30</lastmod></url>
 <url><loc>https://www.hausamusics.com/blog/how-to-count-words-and-characters-correctly.html</loc><lastmod>2026-10-30</lastmod></url>
 <url><loc>https://www.hausamusics.com/blog/how-to-download-youtube-thumbnail-hd.html</loc><lastmod>2026-10-30</lastmod></url>

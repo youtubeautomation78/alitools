@@ -112,6 +112,11 @@
    "destination": "/tools/remove-line-breaks.html",
    "permanent": false,
    "source": "/tools/remove-line-breaks"
+  },
+  {
+   "destination": "/tools/text-to-binary.html",
+   "permanent": false,
+   "source": "/tools/text-to-binary"
   }
  ]
 }
