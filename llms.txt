@@ -1,0 +1,33 @@
+# Ali Super Tools
+
+> Free online tools for everyday text and creator tasks: word counter, character counter, sentence case converter, case converter, comma separator, alphabetical text organizer, slug generator, remove extra spaces, remove line breaks, paragraph counter, text to binary converter and a YouTube thumbnail downloader. No sign-up, no uploads — everything runs privately in the browser.
+
+## Tools
+
+- [Word Counter](https://www.hausamusics.com/tools/word-counter.html): Count words, characters, sentences and paragraphs in real time
+- [Character Counter](https://www.hausamusics.com/tools/character-counter.html): Count characters with and without spaces, check platform limits
+- [Sentence Case Converter](https://www.hausamusics.com/tools/sentence-case-converter.html): Convert text to clean sentence case instantly
+- [Case Converter](https://www.hausamusics.com/tools/case-converter.html): Switch text between UPPER, lower and Title Case
+- [Comma Separator](https://www.hausamusics.com/tools/comma-separator.html): Add commas to a list, one item per line
+- [Alphabetical Text Organizer](https://www.hausamusics.com/tools/alphabetical-text-organizer.html): Sort lines of text alphabetically, A to Z or Z to A
+- [Slug Generator](https://www.hausamusics.com/tools/text-to-slug-generator.html): Turn titles into clean, SEO-friendly URL slugs
+- [Remove Extra Spaces](https://www.hausamusics.com/tools/remove-extra-spaces.html): Clean up double spaces, tabs and messy spacing
+- [Remove Line Breaks](https://www.hausamusics.com/tools/remove-line-breaks.html): Join lines and remove line breaks from pasted text
+- [Paragraph Counter](https://www.hausamusics.com/tools/paragraph-counter.html): Count paragraphs, sentences and words in long text
+- [Text to Binary Converter](https://www.hausamusics.com/tools/text-to-binary.html): Convert text to binary code and binary back to text
+- [YouTube Thumbnail Downloader](https://www.hausamusics.com/tools/youtube-thumbnail-downloader.html): Download YouTube video thumbnails in HD
+
+## Guides
+
+- [How to Count Words and Characters Correctly](https://www.hausamusics.com/blog/how-to-count-words-and-characters-correctly.html): The counting rules behind word and character counters
+- [How to Download a YouTube Thumbnail in HD](https://www.hausamusics.com/blog/how-to-download-youtube-thumbnail-hd.html): Step-by-step guide to saving HD thumbnails
+- [Title Case vs Sentence Case: Which to Use?](https://www.hausamusics.com/blog/title-case-vs-sentence-case.html): When to use each capitalization style
+
+## Pages
+
+- [All Tools](https://www.hausamusics.com/tools.html): Every tool on one page, searchable by category
+- [Blog](https://www.hausamusics.com/blog.html): Guides and tips for writing and creators
+- [About](https://www.hausamusics.com/about.html): About Ali Super Tools
+- [Contact](https://www.hausamusics.com/contact.html): Get in touch
+- [Privacy Policy](https://www.hausamusics.com/privacy-policy.html): How the site handles data (tools run locally, nothing is uploaded)
+- [Terms & Conditions](https://www.hausamusics.com/terms.html): Terms of use

@@ -153,7 +153,7 @@ function fmtDate(iso) {
 }
 function readingTime(text) { return Math.max(1, Math.round(text.split(/\s+/).length / 200)); }
 
-function articlePage(post, c) {
+function articlePage(post, c, others) {
   const url = SITE + '/blog/' + post.slug + '.html';
   const bodyHtml = mdToHtml(post.body);
   const schema = [
@@ -177,6 +177,7 @@ function articlePage(post, c) {
   '<h1 class="article-title">' + esc(post.meta.title) + '</h1>\n' +
   '<p class="blog-meta"><span class="chip">' + esc(post.meta.category || 'General') + '</span> ' + fmtDate(post.meta.date) + ' &middot; ' + readingTime(post.body) + ' min read</p>\n' +
   cover + '\n<div class="article-body">\n' + bodyHtml + '\n</div>\n' +
+  (others && others.length ? '<div class="article-cta"><h2>Read Next</h2><p>More guides from the Ali Super Tools blog:</p>' + others.map(function(o){ return '<p><a href="' + o.slug + '.html">' + esc(o.meta.title) + '</a></p>'; }).join('') + '</div>\n' : '') + 
   '<div class="article-cta"><h2>Try Our Free Online Tools</h2><p>Word counter, sentence case converter, comma separator, slug generator and more - free, private and no sign-up.</p><a class="btn btn-primary" href="../tools.html">Use Free Tools &#8594;</a></div>\n' +
   '</div></div></section>\n</main>\n' + AD_BANNER + c.footer + '\n<div class="toast" id="toast" role="status" aria-live="polite"></div>\n' +
   '<script src="../assets/main.js" defer></script>\n' + AD_SOCIAL + '</body>\n</html>\n';
@@ -223,7 +224,7 @@ function main() {
   for (const f of fs.readdirSync(BLOG_DIR)) {
     if (f.endsWith('.html') && !wanted.has(f)) fs.unlinkSync(path.join(BLOG_DIR, f));
   }
-  for (const p of posts) fs.writeFileSync(path.join(BLOG_DIR, p.slug + '.html'), articlePage(p, cA));
+  for (const p of posts) fs.writeFileSync(path.join(BLOG_DIR, p.slug + '.html'), articlePage(p, cA, posts.filter(function(o){ return o.slug !== p.slug && o.meta.noindex !== true; })));
   fs.writeFileSync(path.join(ROOT, 'blog.html'), indexPage(posts, cI));
 
   /* rss */
