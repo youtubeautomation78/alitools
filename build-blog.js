@@ -132,6 +132,7 @@ function head(o) {
   '<link rel="apple-touch-icon" sizes="180x180" href="' + P + 'assets/apple-touch-icon.png">\n' +
   '<link rel="manifest" href="' + P + 'assets/site.webmanifest">\n' +
   '<meta name="theme-color" content="#2563EB">\n' +
+  '<meta name="robots" content="index, follow, max-image-preview:large">\n' +
   '<link rel="alternate" type="application/rss+xml" title="Ali Super Tools Blog" href="' + SITE + '/rss.xml">\n' +
   '<script>(function(){try{var t=localStorage.getItem("ast-theme");if(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>\n' +
   '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
