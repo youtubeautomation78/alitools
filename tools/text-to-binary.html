@@ -18,7 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2">
 <link rel="stylesheet" href="../assets/style.css">
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I convert text to binary?", "acceptedAnswer": {"@type": "Answer", "text": "Type your text, click Text → Binary and each character is converted to an 8-bit binary number, separated by spaces."}}, {"@type": "Question", "name": "How do I convert binary to text?", "acceptedAnswer": {"@type": "Answer", "text": "Paste binary groups separated by spaces into the input box and click Binary → Text. Each group must contain only 0s and 1s and be at most 8 digits long."}}, {"@type": "Question", "name": "What is the binary code for the letter A?", "acceptedAnswer": {"@type": "Answer", "text": "Capital A is 01000001 and lowercase a is 01100001 in 8-bit ASCII."}}, {"@type": "Question", "name": "Why does binary to text show an error?", "acceptedAnswer": {"@type": "Answer", "text": "The input must contain only 0s and 1s in space-separated groups of up to 8 digits. Extra characters or longer groups are rejected."}}, {"@type": "Question", "name": "Does it support emoji or non-English letters?", "acceptedAnswer": {"@type": "Answer", "text": "Not reliably. The tool is designed for basic English text; characters beyond 8 bits produce longer codes that cannot be decoded back here."}}, {"@type": "Question", "name": "Is my text sent to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The conversion happens locally in your browser."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I convert text to binary?", "acceptedAnswer": {"@type": "Answer", "text": "Type your text into the toolbox box at the top of this page and click Text → Binary. Each character is converted to its 8-bit binary code, with the groups separated by spaces, and the result appears in the Output box ready to copy."}}, {"@type": "Question", "name": "How do I convert binary to text?", "acceptedAnswer": {"@type": "Answer", "text": "Paste binary groups separated by spaces into the input box and click Binary → Text. Each group must contain only 0s and 1s and be at most 8 digits long — for example, 01001000 01101001 decodes to “Hi”."}}, {"@type": "Question", "name": "What is the binary code for the letter A?", "acceptedAnswer": {"@type": "Answer", "text": "Capital A is 01000001 and lowercase a is 01100001 in 8-bit ASCII. The difference between upper and lower case is a single bit, which is why binary decoding is case-sensitive."}}, {"@type": "Question", "name": "Why does binary to text show an error?", "acceptedAnswer": {"@type": "Answer", "text": "The input must contain only 0s and 1s in space-separated groups of up to 8 digits. Extra characters, missing spaces between groups or longer groups are rejected so the decoding stays unambiguous — check for stray letters or line breaks and try again."}}, {"@type": "Question", "name": "Does it support emoji or non-English letters?", "acceptedAnswer": {"@type": "Answer", "text": "Not reliably. The tool is designed for basic English text in the classic 8-bit ASCII range. Characters beyond that range produce longer codes that cannot be decoded back here, so stick to A–Z, a–z, numbers and common punctuation."}}, {"@type": "Question", "name": "Is my text sent to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The conversion happens locally in your browser and nothing is stored or shared."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hausamusics.com/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.hausamusics.com/tools.html"}, {"@type": "ListItem", "position": 3, "name": "Text to Binary Converter", "item": "https://www.hausamusics.com/tools/text-to-binary.html"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Text to Binary Converter", "url": "https://www.hausamusics.com/tools/text-to-binary.html", "description": "Free text to binary converter — translate text into 8-bit binary code or decode binary back to text instantly in your browser. No sign-up.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -80,7 +80,7 @@ atOptions = {
   <div class="container">
     <div class="breadcrumb"><a href="/">Home</a> &#8250; <a href="../tools.html">Tools</a> &#8250; Text to Binary Converter</div>
     <h1>Text to Binary Converter</h1>
-    <p>Translate text into binary code (groups of 0s and 1s) or turn binary back into readable text. Type or paste your input, then click Text → Binary or Binary → Text.</p>
+    <p>Translate text into binary code — or decode binary back into readable text — instantly in your browser. Type or paste into the box above, click Text → Binary or Binary → Text, and copy the result. Free, with no sign-up.</p>
   </div>
 </section>
 
@@ -157,25 +157,35 @@ atOptions = {
       </div>
     </div>
 
-    <div class="prose" style="margin-top:54px">
+            <div class="prose" style="margin-top:54px">
       <h2>About This Text to Binary Converter</h2>
-      <p>Computers store every character as a number, and binary is that number written with only 0s and 1s. This converter turns each character of your text into its 8-bit binary value, separated by spaces — for example, the letter &quot;A&quot; becomes 01000001.</p>
-      <p>To decode, paste binary groups separated by spaces (each group up to 8 digits) and click Binary → Text. It works best with standard English letters, numbers and common punctuation (ASCII).</p>
+      <p>Every letter you type is stored by a computer as a number, and that number is stored in binary — a code made only of 0s and 1s. This free text to binary converter shows you that hidden layer: type any text and each character is translated into its 8-bit binary code, separated by spaces. It also works in reverse, decoding groups of binary digits back into the text they represent.</p>
+      <p>The converter lives in the toolbox at the top of this page and runs entirely in your browser. Nothing is uploaded, there is no sign-up, and conversion is instant in both directions — handy for learning how computers represent text, checking coursework, or making puzzle and game content.</p>
       <h2>How to Use It</h2>
       <ol>
-        <li>Type or paste text into the input box.</li>
-        <li>Click Text → Binary to encode it, or paste binary groups and click Binary → Text to decode.</li>
-        <li>Read the result in the output box.</li>
-        <li>Click Copy Output to save it.</li>
+        <li>Type or paste your text into the toolbox input box at the top of this page.</li>
+        <li>Click <strong>Text → Binary</strong> to see the binary code, or paste binary code and click <strong>Binary → Text</strong> to decode it.</li>
+        <li>Read the result in the Output box.</li>
+        <li>Click Copy Output to take the code or text with you.</li>
       </ol>
-      <h2>Binary Basics</h2>
-      <ul><li>Each group of 8 binary digits is one byte and represents one character.</li><li>Uppercase and lowercase letters have different codes: "A" is 01000001 and "a" is 01100001.</li><li>The space character is 00100000.</li></ul><p><strong>Limits:</strong> characters outside basic ASCII/Latin-1 (emoji, Arabic, Chinese and so on) produce longer binary values and will not convert back correctly with this tool. For plain English text, encoding and decoding round-trips exactly.</p>
+      <h2>How Text Becomes Binary</h2>
+      <p>The system behind this is ASCII, the character encoding that assigns every common character a number from 0 to 127. Write that number in binary and pad it to eight digits (eight bits — one byte) and you have the character's code. Capital A is number 65, which is <strong>01000001</strong>. Lowercase a is 97, or <strong>01100001</strong>. The digit 0 is 48 (<strong>00110000</strong>), and even the space is a character — number 32, <strong>00100000</strong>. So the word "Hi" becomes 01001000 01101001: H is 72, i is 105. Once you see a few examples, you can read short binary messages by eye, and the decoder here will check your work.</p>
+      <p>Modern text often uses Unicode (UTF-8) instead, which keeps the same codes for basic English characters but uses more bytes for accented letters, other alphabets and emoji. This converter is designed for the classic 8-bit range, so stick to plain English text, numbers and punctuation for results that decode back perfectly.</p>
+      <h2>Binary Basics Worth Knowing</h2>
+      <ul>
+        <li><strong>Bit and byte.</strong> A bit is a single 0 or 1. Eight bits make one byte — enough for one ASCII character.</li>
+        <li><strong>Powers of two.</strong> Each position in a binary number is worth double the one to its right: 1, 2, 4, 8, 16, 32, 64, 128. Adding the positions that hold a 1 gives the decimal number.</li>
+        <li><strong>Case matters.</strong> Uppercase and lowercase letters have different codes — A is 01000001 but a is 01100001 — so binary is case-sensitive when you decode it.</li>
+        <li><strong>Spaces separate.</strong> Binary groups must be separated by spaces when decoding, so the tool knows where one character ends and the next begins.</li>
+      </ul>
+      <h2>Reading Binary by Eye: A Worked Example</h2>
+      <p>You do not need a computer to decode a short message — just the powers of two. Take the group <strong>01000011</strong>. The 1s sit in the positions worth 64, 2 and 1, which add up to 67 — and character 67 in ASCII is the letter C. Next, <strong>01100001</strong>: positions worth 64 + 32 + 1 = 97, the letter a. Then <strong>01110100</strong>: 64 + 32 + 16 + 4 = 116, the letter t. Together: "Cat". With a printed ASCII table and a few minutes, a whole sentence opens up this way — and when you get stuck, paste the code into the decoder above and it will finish the job instantly.</p>
       <h2>Who Is This Tool For?</h2>
       <ul>
-        <li><strong>Students</strong> — learn how computers represent text.</li>
-        <li><strong>Teachers</strong> — demonstrate binary in class.</li>
-        <li><strong>Puzzle makers</strong> — create binary messages and codes.</li>
-        <li><strong>Developers</strong> — check character codes quickly.</li>
+        <li><strong>Students</strong> — practise ASCII and binary for computing classes and exams, and check answers instantly.</li>
+        <li><strong>Teachers</strong> — demonstrate how computers store text with live examples a class can follow.</li>
+        <li><strong>Puzzle and game fans</strong> — encode clues, decode messages in games and escape rooms, or hide a note in plain sight.</li>
+        <li><strong>Curious beginners</strong> — see your own name in binary and understand what a byte really is.</li>
       </ul>
     </div>
     <div class="prose">
@@ -184,27 +194,27 @@ atOptions = {
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">How do I convert text to binary?<span class="chev">&#9660;</span></button>
-        <div class="faq-a"><p>Type your text, click Text → Binary and each character is converted to an 8-bit binary number, separated by spaces.</p></div>
+        <div class="faq-a"><p>Type your text into the toolbox box at the top of this page and click Text → Binary. Each character is converted to its 8-bit binary code, with the groups separated by spaces, and the result appears in the Output box ready to copy.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">How do I convert binary to text?<span class="chev">&#9660;</span></button>
-        <div class="faq-a"><p>Paste binary groups separated by spaces into the input box and click Binary → Text. Each group must contain only 0s and 1s and be at most 8 digits long.</p></div>
+        <div class="faq-a"><p>Paste binary groups separated by spaces into the input box and click Binary → Text. Each group must contain only 0s and 1s and be at most 8 digits long — for example, 01001000 01101001 decodes to “Hi”.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What is the binary code for the letter A?<span class="chev">&#9660;</span></button>
-        <div class="faq-a"><p>Capital A is 01000001 and lowercase a is 01100001 in 8-bit ASCII.</p></div>
+        <div class="faq-a"><p>Capital A is 01000001 and lowercase a is 01100001 in 8-bit ASCII. The difference between upper and lower case is a single bit, which is why binary decoding is case-sensitive.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Why does binary to text show an error?<span class="chev">&#9660;</span></button>
-        <div class="faq-a"><p>The input must contain only 0s and 1s in space-separated groups of up to 8 digits. Extra characters or longer groups are rejected.</p></div>
+        <div class="faq-a"><p>The input must contain only 0s and 1s in space-separated groups of up to 8 digits. Extra characters, missing spaces between groups or longer groups are rejected so the decoding stays unambiguous — check for stray letters or line breaks and try again.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Does it support emoji or non-English letters?<span class="chev">&#9660;</span></button>
-        <div class="faq-a"><p>Not reliably. The tool is designed for basic English text; characters beyond 8 bits produce longer codes that cannot be decoded back here.</p></div>
+        <div class="faq-a"><p>Not reliably. The tool is designed for basic English text in the classic 8-bit ASCII range. Characters beyond that range produce longer codes that cannot be decoded back here, so stick to A–Z, a–z, numbers and common punctuation.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is my text sent to a server?<span class="chev">&#9660;</span></button>
-        <div class="faq-a"><p>No. The conversion happens locally in your browser.</p></div>
+        <div class="faq-a"><p>No. The conversion happens locally in your browser and nothing is stored or shared.</p></div>
       </div>
     </div>
 
