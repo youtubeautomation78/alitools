@@ -122,6 +122,126 @@
    "destination": "/tools/text-to-binary.html",
    "permanent": true,
    "source": "/tools/text-to-binary"
+  },
+  {
+   "destination": "/tools/word-counter.html",
+   "permanent": true,
+   "source": "/word-counter"
+  },
+  {
+   "destination": "/tools/word-counter.html",
+   "permanent": true,
+   "source": "/word-counter/"
+  },
+  {
+   "destination": "/tools/sentence-case-converter.html",
+   "permanent": true,
+   "source": "/sentence-case-converter"
+  },
+  {
+   "destination": "/tools/sentence-case-converter.html",
+   "permanent": true,
+   "source": "/sentence-case-converter/"
+  },
+  {
+   "destination": "/tools/youtube-thumbnail-downloader.html",
+   "permanent": true,
+   "source": "/youtube-thumbnail-downloader"
+  },
+  {
+   "destination": "/tools/youtube-thumbnail-downloader.html",
+   "permanent": true,
+   "source": "/youtube-thumbnail-downloader/"
+  },
+  {
+   "destination": "/tools/remove-extra-spaces.html",
+   "permanent": true,
+   "source": "/remove-extra-spaces"
+  },
+  {
+   "destination": "/tools/remove-extra-spaces.html",
+   "permanent": true,
+   "source": "/remove-extra-spaces/"
+  },
+  {
+   "destination": "/tools/comma-separator.html",
+   "permanent": true,
+   "source": "/comma-separator"
+  },
+  {
+   "destination": "/tools/comma-separator.html",
+   "permanent": true,
+   "source": "/comma-separator/"
+  },
+  {
+   "destination": "/tools/paragraph-counter.html",
+   "permanent": true,
+   "source": "/paragraph-counter"
+  },
+  {
+   "destination": "/tools/paragraph-counter.html",
+   "permanent": true,
+   "source": "/paragraph-counter/"
+  },
+  {
+   "destination": "/tools/alphabetical-text-organizer.html",
+   "permanent": true,
+   "source": "/alphabetical-text-organizer"
+  },
+  {
+   "destination": "/tools/alphabetical-text-organizer.html",
+   "permanent": true,
+   "source": "/alphabetical-text-organizer/"
+  },
+  {
+   "destination": "/tools/text-to-slug-generator.html",
+   "permanent": true,
+   "source": "/text-to-slug-generator"
+  },
+  {
+   "destination": "/tools/text-to-slug-generator.html",
+   "permanent": true,
+   "source": "/text-to-slug-generator/"
+  },
+  {
+   "destination": "/tools/character-counter.html",
+   "permanent": true,
+   "source": "/character-counter"
+  },
+  {
+   "destination": "/tools/character-counter.html",
+   "permanent": true,
+   "source": "/character-counter/"
+  },
+  {
+   "destination": "/tools/case-converter.html",
+   "permanent": true,
+   "source": "/case-converter"
+  },
+  {
+   "destination": "/tools/case-converter.html",
+   "permanent": true,
+   "source": "/case-converter/"
+  },
+  {
+   "destination": "/tools/remove-line-breaks.html",
+   "permanent": true,
+   "source": "/remove-line-breaks"
+  },
+  {
+   "destination": "/tools/remove-line-breaks.html",
+   "permanent": true,
+   "source": "/remove-line-breaks/"
+  },
+  {
+   "destination": "/tools/text-to-binary.html",
+   "permanent": true,
+   "source": "/text-to-binary"
+  },
+  {
+   "destination": "/tools/text-to-binary.html",
+   "permanent": true,
+   "source": "/text-to-binary/"
   }
  ]
 }

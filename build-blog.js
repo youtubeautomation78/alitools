@@ -174,7 +174,7 @@ function articlePage(post, c, others) {
   return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + head({ title: post.meta.title + ' | Ali Super Tools', description: post.meta.description, url, type: 'article', image: post.meta.image, schema, prefix: '../', noindex: post.meta.noindex === true }) + '</head>\n<body>\n' +
   '<a class="skip-link" href="#main">Skip to content</a>\n' + c.header + '\n' + c.ticker + '\n' +
   AD_BANNER_468 + '<main id="main">\n<section class="section"><div class="container"><div class="article-wrap">\n' +
-  '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="../blog.html">Blog</a> &rsaquo; <span>' + esc(post.meta.title) + '</span></nav>\n' +
+  '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a> &rsaquo; <a href="../blog.html">Blog</a> &rsaquo; <span>' + esc(post.meta.title) + '</span></nav>\n' +
   '<h1 class="article-title">' + esc(post.meta.title) + '</h1>\n' +
   '<p class="blog-meta"><span class="chip">' + esc(post.meta.category || 'General') + '</span> ' + fmtDate(post.meta.date) + ' &middot; ' + readingTime(post.body) + ' min read</p>\n' +
   cover + '\n<div class="article-body">\n' + bodyHtml + '\n</div>\n' +
