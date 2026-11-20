@@ -36,3 +36,7 @@ AP, APA, MLA and Chicago all handle title case slightly differently, especially 
 If you pasted a headline in the wrong case, you do not need to retype it. Use the [Case Converter](../tools/case-converter.html) to switch between UPPER CASE, lower case, Title Case and Sentence case instantly, or the [Sentence Case Converter](../tools/sentence-case-converter.html) for sentence case.
 
 One thing to remember: converters lowercase everything before capitalizing, so names, places and the word "I" may need a quick manual fix afterward.
+
+## A quick way to decide
+
+Still unsure? Look at where the text will appear. Blog headlines and book titles usually look best in Title Case, because each important word gets equal weight. Buttons, menu items, form labels and app headings usually read better in Sentence case, because they feel like natural language rather than a headline. Email subject lines sit in between — many writers use sentence case to look personal, and title case to look formal. When in doubt, open the page or document the text belongs to and match the style already used there; a headline that follows the same pattern as its neighbours never looks out of place.

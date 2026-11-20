@@ -31,3 +31,7 @@ Thumbnails belong to the person who made the video. Downloading one for personal
 - Use high contrast so it stands out in a crowded feed.
 
 You can also tidy up video titles and descriptions with our [Character Counter](../tools/character-counter.html) to stay inside YouTube's limits.
+
+## Which size should you download?
+
+Our [YouTube Thumbnail Downloader](../tools/youtube-thumbnail-downloader.html) lists every size YouTube keeps for a video, largest first: HD 1280x720, SD 640x480, HQ 480x360, MQ 320x180 and the small 120x90 preview. For almost every job, pick the HD version — it is the full-resolution image the creator uploaded, so it stays sharp if you print it, zoom in, or study the design up close. The smaller sizes are still useful when you only need a quick reference, a tiny placeholder in a document, or a fast download on a slow connection. If the HD size is missing from the list, the video itself was uploaded at a lower resolution, and the biggest size shown is the best copy that exists.

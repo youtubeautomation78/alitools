@@ -1,8 +1,8 @@
 ---
-title: "How to Remove Duplicate Lines from a List (and Sort It Too)"
+title: "How to Remove Duplicate Lines from a List"
 date: 2026-11-13
 category: "Writing Guides"
-description: "How to remove duplicate lines from a list in seconds — what counts as a duplicate, how to dedupe without losing the first copy, and how to sort the clean list A–Z."
+description: "Remove duplicate lines from a list in seconds — what counts as a duplicate, how to dedupe without losing the first copy, and sort the clean list A–Z."
 draft: false
 ---
 

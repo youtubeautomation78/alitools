@@ -2,7 +2,7 @@
 title: Alphabetical text Sorter
 date: 2026-11-20
 category: General
-description: How to use alphabetical text sorter
+description: "Sort keywords and any list from A to Z online — how an alphabetical text sorter works, how to remove duplicates, and who it helps. Free, no sign-up."
 draft: false
 ---
 
