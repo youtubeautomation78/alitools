@@ -139,7 +139,6 @@ function head(o) {
   '<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2">\n' +
   '<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2">\n' +
   '<link rel="stylesheet" href="' + P + 'assets/style.css">\n' +
-  '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4856164099586969" crossorigin="anonymous"></script>\n' +
   (o.schema ? '<script type="application/ld+json">' + JSON.stringify(o.schema) + '</script>\n' : '');
 }
 
